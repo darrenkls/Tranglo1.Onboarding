@@ -1,0 +1,45 @@
+ARG BUILD_ENV=dev  
+ARG ARCH=amd64
+ARG GIT_COMMIT_HASH
+ARG BUILD_VERSION=0
+ARG BASE_REPOSITORY
+ARG MSBuild_CONFIG=Debug
+
+FROM --platform=${ARCH} ${BASE_REPOSITORY}/dotnet/runtime:3.1 AS base
+WORKDIR /app
+
+FROM --platform=${ARCH} ${BASE_REPOSITORY}/dotnet/sdk:3.1 AS build
+ARG MSBuild_CONFIG
+
+WORKDIR /src
+COPY ["NuGet.Config", "."]
+COPY ["BackgroundTasks/ActiveDirectoryManager/ActiveDirectoryManager.csproj", "BackgroundTasks/ActiveDirectoryManager/"]
+COPY ["Tranglo1.CustomerIdentity.Domain/Tranglo1.CustomerIdentity.Domain.csproj", "Tranglo1.CustomerIdentity.Domain/"]
+COPY ["Tranglo1.CustomerIdentity.Infrastructure/Tranglo1.CustomerIdentity.Infrastructure.csproj", "Tranglo1.CustomerIdentity.Infrastructure/"]
+RUN dotnet restore "BackgroundTasks/ActiveDirectoryManager/ActiveDirectoryManager.csproj"
+COPY . .
+WORKDIR "/src/BackgroundTasks/ActiveDirectoryManager"
+RUN dotnet build "ActiveDirectoryManager.csproj" -c ${MSBuild_CONFIG} -o /app/build
+
+FROM build AS publish
+ARG MSBuild_CONFIG
+
+RUN dotnet publish "ActiveDirectoryManager.csproj" -c ${MSBuild_CONFIG} -o /app/publish
+
+FROM base AS final
+ARG BUILD_ENV
+ARG GIT_COMMIT_HASH
+ARG BUILD_VERSION
+ARG MSBuild_CONFIG
+
+LABEL BUILD_CONFIG=${MSBuild_CONFIG}
+LABEL GIT_HASH=${GIT_COMMIT_HASH}
+
+ENV DOTNET_ENVIRONMENT=${BUILD_ENV}
+ENV ASPNETCORE_ENVIRONMENT=${BUILD_ENV}
+ENV BUILD_VERSION=${BUILD_VERSION}
+ENV DOTNET_VERSION=RUNTIME_3.1
+
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ActiveDirectoryManager.dll"]

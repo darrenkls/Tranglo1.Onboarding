@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.0" />
+	  <PackageReference Include="NLog" Version="5.5.0" />
+	  <PackageReference Include="NLog.DiagnosticSource" Version="5.2.3" />
+	  <PackageReference Include="NLog.Extensions.Hosting" Version="5.5.0" />
+	  <PackageReference Include="NLog.Extensions.Logging" Version="5.5.0" />
+	  <PackageReference Include="Polly" Version="8.6.5" />
+	  <PackageReference Include="Quartz" Version="3.14.0" />
+	  <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.14.0" />
+	  <PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tranglo1.Onboarding.Domain\Tranglo1.Onboarding.Domain.csproj" />
+    <ProjectReference Include="..\..\Tranglo1.Onboarding.Infrastructure\Tranglo1.Onboarding.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
