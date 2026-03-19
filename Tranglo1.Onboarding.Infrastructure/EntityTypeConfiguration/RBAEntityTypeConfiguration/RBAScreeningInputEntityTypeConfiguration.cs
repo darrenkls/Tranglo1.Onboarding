@@ -12,12 +12,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
         {
             builder.ToTable("RBAScreeningInputs", RBADBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                config.HistoryTable("RBAScreeningInputs");
-            });
-
             //Primary Key
             builder.Property(kyc => kyc.Id)
                     .HasColumnName("RBAScreeningInputCode");

@@ -11,12 +11,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("PrimaryOfficers", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("PrimaryOfficers");
-            });
-
             //Primary Key
             builder.Property(kyc => kyc.Id)
                     .HasColumnName("PrimaryOfficerCode");

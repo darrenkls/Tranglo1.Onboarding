@@ -15,12 +15,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("TransactionEvaluationAnswerChoices", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("TransactionEvaluationAnswerChoices");
-            });
-
             builder.HasKey(o => o.Id);
 
             builder.Property(o => o.Id)

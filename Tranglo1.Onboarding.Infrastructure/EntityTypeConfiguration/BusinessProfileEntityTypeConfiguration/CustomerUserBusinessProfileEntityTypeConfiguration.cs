@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("CustomerUserBusinessProfiles", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("CustomerUserBusinessProfiles");
-            });
-
             //Primary Key
             builder.Property(kyc => kyc.Id)
                     .HasColumnName("CustomerUserBusinessProfileCode");

@@ -12,12 +12,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
         {
             builder.ToTable("RBA", RBADBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                config.HistoryTable("RBA");
-            });
-
             //Primary Key
             builder.Property(kyc => kyc.Id)
                     .HasColumnName("RBACode");

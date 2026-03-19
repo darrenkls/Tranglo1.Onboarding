@@ -13,12 +13,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("ScreeningDetails", ScreeningDBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(ScreeningDBContext.HISTORY_SCHEMA);
-                config.HistoryTable("ScreeningDetails");
-            });
-
             //Primary Key
             builder.Property(kyc => kyc.Id)
                     .HasColumnName("ScreeningDetailsCode");

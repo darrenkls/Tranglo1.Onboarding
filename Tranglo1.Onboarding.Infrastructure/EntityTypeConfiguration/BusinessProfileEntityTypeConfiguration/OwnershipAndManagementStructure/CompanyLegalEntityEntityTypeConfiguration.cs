@@ -12,12 +12,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("CompanyLegalEntities", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("CompanyLegalEntities");
-            });
-
             builder.HasOne(o => o.Country)
                .WithMany()
                .HasForeignKey("CountryCode")

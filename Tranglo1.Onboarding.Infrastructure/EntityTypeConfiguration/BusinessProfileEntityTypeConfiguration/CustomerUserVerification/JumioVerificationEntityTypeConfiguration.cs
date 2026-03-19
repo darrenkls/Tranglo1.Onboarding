@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("JumioVerifications", BusinessProfileDbContext.EVENT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("JumioVerifications");
-            });
-
             builder.Property(a => a.Id)
                .HasColumnName("JumioVerificationCode");
             builder.HasKey(a => a.Id);

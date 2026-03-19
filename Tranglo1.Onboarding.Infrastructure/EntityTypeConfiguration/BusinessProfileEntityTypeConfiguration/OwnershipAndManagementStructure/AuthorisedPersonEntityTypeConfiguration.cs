@@ -12,12 +12,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("AuthorisedPersons", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("AuthorisedPersons");
-            });
-
             //Primary Key
             builder.Property(o => o.Id)
                 .HasColumnName("AuthorisedPersonCode");

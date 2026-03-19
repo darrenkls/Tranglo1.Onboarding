@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.PartnerEnti
 		protected override void Configure(EntityTypeBuilder<PartnerSubscription> builder)
 		{
 			builder.ToTable("PartnerSubscriptions", PartnerDBContext.DEFAULT_SCHEMA);
-
-			builder.HasTemporalTable(config =>
-			{
-				config.HistorySchema(PartnerDBContext.HISTORY_SCHEMA);
-				config.HistoryTable("PartnerSubscriptions");
-			});
 
 			builder.HasKey(o => o.Id);
 

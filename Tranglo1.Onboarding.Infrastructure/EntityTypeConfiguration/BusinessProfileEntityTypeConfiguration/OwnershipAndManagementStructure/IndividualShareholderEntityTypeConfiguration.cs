@@ -13,12 +13,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("IndividualShareholders", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("IndividualShareholders");
-            });
-
             builder.Property(e => e.Name)
                     .HasMaxLength(150);
 

@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
         {
             builder.ToTable("OverridingRulesParameter", RBADBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                config.HistoryTable("OverridingRulesParameter");
-            });
-
             // Primary Key
             builder.Property(er => er.Id)
                 .HasColumnName("OverridingRuleParameterCode");

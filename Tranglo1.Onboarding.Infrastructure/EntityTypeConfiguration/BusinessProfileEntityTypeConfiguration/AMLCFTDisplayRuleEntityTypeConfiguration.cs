@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.AMLCFTRelat
         {
             builder.ToTable("AMLCFTDisplayRules", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("AMLCFTDisplayRules");
-            });
-
             builder.HasKey(o => o.Id);
 
             builder.Property(o => o.Id)

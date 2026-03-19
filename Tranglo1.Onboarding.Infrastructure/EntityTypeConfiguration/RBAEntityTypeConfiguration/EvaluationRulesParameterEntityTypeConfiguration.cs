@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
         {
             builder.ToTable("EvaluationRulesParameter", RBADBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                config.HistoryTable("EvaluationRulesParameter");
-            });
-
             // Primary Key
             builder.Property(er => er.Id)
                 .HasColumnName("EvaluationRuleParameterCode");

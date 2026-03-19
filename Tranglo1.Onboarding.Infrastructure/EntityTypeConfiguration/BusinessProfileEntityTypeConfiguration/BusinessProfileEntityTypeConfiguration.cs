@@ -12,12 +12,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("BusinessProfiles", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("BusinessProfiles");
-            });
-
             //Primary Key
             builder.Property(complianceOfficerLoginId => complianceOfficerLoginId.Id)
                     .HasColumnName("ComplianceOfficerLoginId");

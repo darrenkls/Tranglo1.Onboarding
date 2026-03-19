@@ -15,13 +15,7 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.OwnershipAn
         {
             builder.ToTable("ShareholderCompanyLegalEntities", BusinessProfileDbContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("ShareholderCompanyLegalEntities");
-            });
 
-      
 
             builder.HasOne(o => o.Shareholder)
              .WithMany()

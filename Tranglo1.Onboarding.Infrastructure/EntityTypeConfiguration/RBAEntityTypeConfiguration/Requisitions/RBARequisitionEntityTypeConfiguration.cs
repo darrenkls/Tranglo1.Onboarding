@@ -16,13 +16,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
                 RBADBContext.DEFAULT_SCHEMA, a =>
                 {
 
-                    builder.HasTemporalTable(config =>
-                    {
-                        config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                        config.HistoryTable("RBARequisitions");
-                        config.StartDateColumn("SysStartTime");
-                        config.EndDateColumn("SysEndTime");
-                    });
                 });
 
             builder.HasKey(o => o.Id);

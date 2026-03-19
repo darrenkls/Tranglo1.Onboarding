@@ -37,12 +37,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
 
             builder.Property(o => o.IsRejectTransaction)
                 .HasColumnName("IsRejectTransaction");
-
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(CountrySettingDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("CountrySettings");
-            });
         }
     }
 }

@@ -14,12 +14,6 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         {
             builder.ToTable("EvaluationRules", RBADBContext.DEFAULT_SCHEMA);
 
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
-                config.HistoryTable("EvaluationRules");
-            });
-
             // Primary Key
             builder.Property(er => er.Id)
                 .HasColumnName("EvaluationRulesCode");
