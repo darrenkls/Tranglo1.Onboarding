@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tranglo1.Identity.Contracts" Version="1.0.0" />
     <ProjectReference Include="..\Tranglo1.Onboarding.Domain\Tranglo1.Onboarding.Domain.csproj" />
   </ItemGroup>
 

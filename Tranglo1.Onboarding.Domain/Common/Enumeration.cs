@@ -26,6 +26,11 @@ namespace Tranglo1.Onboarding.Domain.Common
             return fields.Select(f => f.GetValue(null)).Cast<T>();
         }
 
+        public static T FindById<T>(int id) where T : Enumeration
+        {
+            return GetAll<T>().SingleOrDefault(x => x.Id == id);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is not Enumeration otherValue)
