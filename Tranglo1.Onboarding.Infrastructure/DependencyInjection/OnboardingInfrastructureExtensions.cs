@@ -24,6 +24,10 @@ namespace Tranglo1.Onboarding.Infrastructure.DependencyInjection
             services.AddScoped<IScreeningRepository, ScreeningRepository>();
             services.AddScoped<IRBARepository, RBARepository>();
             services.AddScoped<IPartnerRepository, PartnerRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<ISignUpCodeRepository, SignUpCodeRepository>();
+            services.AddScoped<IExternalUserRoleRepository, ExternalUserRoleRepository>();
+            services.AddScoped<IStaffEntityQueryService, ApplicationUserRepository>();
             services.AddScoped<CsvExporter>();
 
             services.AddTransient<LoggingHandler<ComplianceExternalService>>();

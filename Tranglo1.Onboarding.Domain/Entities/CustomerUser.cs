@@ -1,11 +1,14 @@
-using CSharpFunctionalExtensions;
+using Tranglo1.Onboarding.Domain.Common;
 
 namespace Tranglo1.Onboarding.Domain.Entities
 {
-    public class CustomerUser : Entity
+    /// <summary>
+    /// Stub — proper definition belongs in Tranglo1.Identity.Contracts NuGet package.
+    /// Replace with Contracts type once the package is updated.
+    /// </summary>
+    public class CustomerUser : ApplicationUser
     {
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string FullName { get; set; }
+        public CountryMeta CountryMeta { get; set; }
+        public CompanyUserBlockStatus CompanyUserBlockStatus { get; set; }
     }
 }

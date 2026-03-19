@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Tranglo1.Onboarding.Application.Managers;
+using Tranglo1.Onboarding.Application.Services.Identity;
 
 namespace Tranglo1.Onboarding.Application.DependencyInjection
 {
@@ -21,6 +22,7 @@ namespace Tranglo1.Onboarding.Application.DependencyInjection
         public static IServiceCollection AddOnboardingApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IntegrationManager>();
+            services.AddScoped<ApplicationUserService>();
 
             return services;
         }
