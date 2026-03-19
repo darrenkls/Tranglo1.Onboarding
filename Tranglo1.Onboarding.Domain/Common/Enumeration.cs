@@ -1,48 +1,67 @@
+using CSharpFunctionalExtensions;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Tranglo1.Onboarding.Domain.Common
 {
-    public abstract class Enumeration : IComparable
+    public abstract class Enumeration : Entity, IComparable
     {
-        public int Id { get; protected set; }
-        public string Name { get; protected set; }
+        protected static ConcurrentDictionary<Type, Enumeration[]> _CachedEnumerations =
+            new ConcurrentDictionary<Type, Enumeration[]>();
+
+        public string Name { get; private set; }
 
         protected Enumeration() { }
 
-        protected Enumeration(int id, string name)
+        protected Enumeration(int id, string name) : base(id)
         {
-            Id = id;
             Name = name;
         }
 
         public override string ToString() => Name;
 
-        public static IEnumerable<T> GetAll<T>() where T : Enumeration
+        public static T FindById<T>(long id) where T : Enumeration
         {
-            var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
-            return fields.Select(f => f.GetValue(null)).Cast<T>();
+            return GetAll<T>().FirstOrDefault(e => e.Id == id);
         }
 
-        public static T FindById<T>(int id) where T : Enumeration
+        public static IEnumerable<T> GetAll<T>() where T : Enumeration
         {
-            return GetAll<T>().SingleOrDefault(x => x.Id == id);
+            return _CachedEnumerations.GetOrAdd(typeof(T), t =>
+            {
+                var fields = typeof(T).GetFields(BindingFlags.Public |
+                                                 BindingFlags.Static |
+                                                 BindingFlags.DeclaredOnly);
+
+                return fields
+                    .Where(f => f.DeclaringType == t)
+                    .Select(f => f.GetValue(null))
+                    .Cast<T>()
+                    .OrderBy(e => e.Name)
+                    .ToArray();
+            }).Cast<T>();
+        }
+
+        public static T FindByName<T>(string name) where T : Enumeration
+        {
+            return GetAll<T>().FirstOrDefault(e => e.Name == name);
         }
 
         public override bool Equals(object obj)
         {
-            if (obj is not Enumeration otherValue)
+            var otherValue = obj as Enumeration;
+            if (otherValue == null)
                 return false;
 
             var typeMatches = GetType().Equals(obj.GetType());
             var valueMatches = Id.Equals(otherValue.Id);
-
             return typeMatches && valueMatches;
         }
 
-        public override int GetHashCode() => Id.GetHashCode();
+        public override int GetHashCode() => base.GetHashCode();
 
         public int CompareTo(object other) => Id.CompareTo(((Enumeration)other).Id);
     }

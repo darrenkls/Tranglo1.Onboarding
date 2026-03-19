@@ -1,11 +1,15 @@
 using CSharpFunctionalExtensions;
+using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace Tranglo1.Onboarding.Domain.Common
 {
     public class Email : ValueObject
     {
+        public Email() : base() { }
+
+        public const int MaxLength = 320;
         public string Value { get; }
 
         private Email(string value)
@@ -15,13 +19,22 @@ namespace Tranglo1.Onboarding.Domain.Common
 
         public static Result<Email> Create(string value)
         {
-            value = value?.Trim().ToLower();
+            value = value?.Trim();
 
             if (string.IsNullOrEmpty(value))
                 return Result.Failure<Email>("Email cannot be blank");
 
-            if (!Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                return Result.Failure<Email>("Email format is invalid");
+            if (value.Length > MaxLength)
+                return Result.Failure<Email>($"Email cannot be longer than {MaxLength} characters.");
+
+            try
+            {
+                _ = new MailAddress(value);
+            }
+            catch (FormatException ex)
+            {
+                return Result.Failure<Email>(ex.Message);
+            }
 
             return Result.Success(new Email(value));
         }
