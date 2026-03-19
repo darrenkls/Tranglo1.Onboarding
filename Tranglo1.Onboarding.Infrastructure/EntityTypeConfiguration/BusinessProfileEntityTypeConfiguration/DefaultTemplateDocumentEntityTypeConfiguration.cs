@@ -14,6 +14,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<DefaultTemplateDocument> builder)
         {
             builder.ToTable("DefaultTemplateDocuments", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("DefaultTemplateDocuments");
+            });
+
 
             builder.HasKey(o => o.Id);
 

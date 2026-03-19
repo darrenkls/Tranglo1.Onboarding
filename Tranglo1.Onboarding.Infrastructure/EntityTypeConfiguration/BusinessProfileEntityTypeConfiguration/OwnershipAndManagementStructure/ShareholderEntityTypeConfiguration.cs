@@ -16,6 +16,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<Shareholder> builder)
         {
             builder.ToTable("Shareholders", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("Shareholders");
+            });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)

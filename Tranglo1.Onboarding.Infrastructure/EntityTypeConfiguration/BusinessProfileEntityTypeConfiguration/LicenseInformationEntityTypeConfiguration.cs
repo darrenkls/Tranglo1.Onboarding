@@ -10,6 +10,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<LicenseInformation> builder)
         {
             builder.ToTable("LicenseInformations", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("LicenseInformations");
+            });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)

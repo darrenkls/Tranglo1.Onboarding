@@ -17,6 +17,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
                 {
 
                 });
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
+                config.HistoryTable("RBARequisitions");
+            });
+
 
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id)

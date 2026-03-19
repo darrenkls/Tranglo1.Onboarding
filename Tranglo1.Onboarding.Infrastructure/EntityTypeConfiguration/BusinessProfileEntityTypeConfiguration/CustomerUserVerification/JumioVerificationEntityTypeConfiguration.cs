@@ -13,6 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<JumioVerification> builder)
         {
             builder.ToTable("JumioVerifications", BusinessProfileDbContext.EVENT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("JumioVerifications");
+            });
+
 
             builder.Property(a => a.Id)
                .HasColumnName("JumioVerificationCode");

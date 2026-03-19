@@ -13,6 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<RequisitionRunningNumber> builder)
         {
             builder.ToTable("RequisitionRunningNumbers", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("RequisitionRunningNumbers");
+            });
+
 
             builder.Property(o => o.Prefix)
                 .HasMaxLength(150)

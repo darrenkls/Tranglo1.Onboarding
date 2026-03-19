@@ -13,6 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
 		protected override void Configure(EntityTypeBuilder<KYCCustomerSummaryFeedback> builder)
 		{
 			builder.ToTable("KYCCustomerSummaryFeedback", BusinessProfileDbContext.DEFAULT_SCHEMA);
+			builder.HasTemporalTable(configuration =>
+			{
+				configuration.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+				configuration.HistoryTable("KYCCustomerSummaryFeedbacks");
+			});
+
 
 
 			//Primary Key

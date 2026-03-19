@@ -13,6 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.RBAEntityTy
         protected override void Configure(EntityTypeBuilder<EvaluationRulesParameter> builder)
         {
             builder.ToTable("EvaluationRulesParameter", RBADBContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(RBADBContext.HISTORY_SCHEMA);
+                config.HistoryTable("EvaluationRulesParameter");
+            });
+
 
             // Primary Key
             builder.Property(er => er.Id)

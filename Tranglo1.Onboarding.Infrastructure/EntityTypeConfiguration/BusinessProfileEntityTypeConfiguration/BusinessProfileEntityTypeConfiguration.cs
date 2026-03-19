@@ -11,6 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<BusinessProfile> builder)
         {
             builder.ToTable("BusinessProfiles", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("BusinessProfiles");
+            });
+
 
             //Primary Key
             builder.Property(complianceOfficerLoginId => complianceOfficerLoginId.Id)

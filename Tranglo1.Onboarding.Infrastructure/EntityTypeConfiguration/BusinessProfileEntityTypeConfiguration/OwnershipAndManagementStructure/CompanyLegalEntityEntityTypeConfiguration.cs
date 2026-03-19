@@ -11,6 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<CompanyLegalEntity> builder)
         {
             builder.ToTable("CompanyLegalEntities", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("CompanyLegalEntities");
+            });
+
 
             builder.HasOne(o => o.Country)
                .WithMany()

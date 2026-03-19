@@ -14,6 +14,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<CountrySetting> builder)
         {
             builder.ToTable("CountrySettings", ApplicationUserDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(CountrySettingDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("CountrySettings");
+            });
+
 
             builder.HasKey(o => o.Id);
 

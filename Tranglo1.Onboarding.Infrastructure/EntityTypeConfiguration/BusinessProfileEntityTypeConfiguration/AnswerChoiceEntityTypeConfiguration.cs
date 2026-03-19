@@ -11,6 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<AnswerChoice> builder)
         {
             builder.ToTable("AnswerChoices", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("AnswerChoices");
+            });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)
