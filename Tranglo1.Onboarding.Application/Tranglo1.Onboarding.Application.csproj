@@ -14,7 +14,20 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Mime-Detective" Version="25.8.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="5.0.3" />
+    <PackageReference Include="CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.1.0" />
+    <PackageReference Include="Masking.Serilog" Version="1.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="TimeZoneNames" Version="4.2.0" />
     <PackageReference Include="Tranglo.DocumentStorage" Version="1.0.0" />
     <PackageReference Include="Tranglo.UserAccessControl" Version="2.0.0" />
     <PackageReference Include="Tranglo1.ApprovalWorkflowEngine" Version="1.3.4" />
