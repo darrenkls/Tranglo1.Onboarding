@@ -13,12 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<ChangeCustomerTypeDocumentUploadBP> builder)
         {
             builder.ToTable("ChangeCustomerTypeDocumentUploadBPs", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("ChangeCustomerTypeDocumentUploadBPs");
             });
+
 
             builder.HasKey(o => o.Id);
 

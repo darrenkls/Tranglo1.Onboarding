@@ -10,12 +10,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<ScreeningInput> builder)
         {
             builder.ToTable("ScreeningInput", ScreeningDBContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(ScreeningDBContext.HISTORY_SCHEMA);
                 config.HistoryTable("ScreeningInput");
             });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)

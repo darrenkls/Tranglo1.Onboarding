@@ -11,12 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<DocumentCategory> builder)
         {
             builder.ToTable("DocumentCategories", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("DocumentCategories");
             });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)

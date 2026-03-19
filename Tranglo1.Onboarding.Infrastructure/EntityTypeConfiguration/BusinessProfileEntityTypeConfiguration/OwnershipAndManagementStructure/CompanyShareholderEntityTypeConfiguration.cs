@@ -16,12 +16,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<CompanyShareholder> builder)
         {
             builder.ToTable("CompanyShareholders", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("CompanyShareholders");
             });
+
 
             builder.Property(e => e.CompanyName)
                     .HasMaxLength(150);

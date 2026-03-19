@@ -13,12 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.AMLCFTRelat
         protected override void Configure(EntityTypeBuilder<AMLCFTDisplayRules> builder)
         {
             builder.ToTable("AMLCFTDisplayRules", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("AMLCFTDisplayRules");
             });
+
 
             builder.HasKey(o => o.Id);
 

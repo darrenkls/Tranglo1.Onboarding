@@ -13,12 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<JumioFinalization> builder)
         {
             builder.ToTable("JumioFinalizations", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("JumioFinalizations");
             });
+
 
             builder.Property(a => a.Id)
                .HasColumnName("JumioFinalizationCode");

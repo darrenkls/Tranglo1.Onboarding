@@ -13,13 +13,13 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration.CustomerUse
         protected override void Configure(EntityTypeBuilder<CustomerVerificationDocuments> builder)
         {
             builder.ToTable("CustomerVerificationDocuments", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("CustomerVerificationDocuments");
             });
+
+
 
             //Primary Key 
             builder.Property(a => a.Id)

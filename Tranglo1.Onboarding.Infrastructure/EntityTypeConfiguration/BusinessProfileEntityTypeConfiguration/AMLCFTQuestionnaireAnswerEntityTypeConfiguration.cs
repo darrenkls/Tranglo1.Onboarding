@@ -11,12 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<AMLCFTQuestionnaireAnswer> builder)
         {
             builder.ToTable("AMLCFTQuestionnaireAnswers", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("AMLCFTQuestionnaireAnswers");
             });
+
 
             //Primary Key
             builder.Property(kyc => kyc.Id)

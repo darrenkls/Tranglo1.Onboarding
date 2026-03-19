@@ -14,12 +14,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<TransactionEvaluationInfo> builder)
         {
             builder.ToTable("TransactionEvaluationInfos", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("TransactionEvaluationInfos");
             });
+
 
             builder.HasKey(o => o.Id);
 

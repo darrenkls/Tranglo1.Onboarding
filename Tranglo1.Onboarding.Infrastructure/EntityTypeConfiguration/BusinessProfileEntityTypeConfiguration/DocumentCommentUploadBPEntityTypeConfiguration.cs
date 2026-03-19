@@ -13,13 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<DocumentCommentUploadBP> builder)
         {
             builder.ToTable("DocumentCommentUploadBPs", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("DocumentCommentUploadBPs");
-
             });
+
 
             builder.HasOne(o => o.DocumentCommentBP)
                 .WithMany()

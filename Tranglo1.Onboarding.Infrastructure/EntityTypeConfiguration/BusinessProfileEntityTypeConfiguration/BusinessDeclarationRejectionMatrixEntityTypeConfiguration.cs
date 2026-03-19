@@ -13,12 +13,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<BusinessDeclarationRejectionMatrix> builder)
         {
             builder.ToTable("BusinessDeclarationRejectionMatrixes", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("BusinessDeclarationRejectionMatrixes");
             });
+
 
             builder.HasKey(o => o.Id);
 

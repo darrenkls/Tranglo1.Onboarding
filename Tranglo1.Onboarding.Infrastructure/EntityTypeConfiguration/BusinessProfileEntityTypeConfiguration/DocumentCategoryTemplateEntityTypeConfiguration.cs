@@ -11,12 +11,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<DocumentCategoryTemplate> builder)
         {
             builder.ToTable("DocumentCategoryTemplates", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("DocumentCategoryTemplates");
             });
+
 
 
             builder.HasOne(o => o.Questionnaire)

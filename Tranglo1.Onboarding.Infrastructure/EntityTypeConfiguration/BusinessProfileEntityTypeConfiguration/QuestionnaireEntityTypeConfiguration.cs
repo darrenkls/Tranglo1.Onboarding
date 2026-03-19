@@ -15,12 +15,12 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<Questionnaire> builder)
         {
             builder.ToTable("Questionnaires", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
             builder.HasTemporalTable(config =>
             {
                 config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("Questionnaires");
             });
+
 
             builder.HasKey(o => o.Id);
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,13 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
 		protected override void Configure(EntityTypeBuilder<KYCSummaryFeedback> builder)
 		{
 			builder.ToTable("KYCSummaryFeedback", BusinessProfileDbContext.DEFAULT_SCHEMA);
-
 			builder.HasTemporalTable(configuration =>
 			{
 				configuration.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-				configuration.HistoryTable("KYCSummaryFeedback");
+				configuration.HistoryTable("KYCSummaryFeedbacks");
 			});
+
+
 
 			//Primary Key
 			builder.Property(kyc => kyc.Id)

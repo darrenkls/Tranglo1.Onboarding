@@ -13,18 +13,18 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
         protected override void Configure(EntityTypeBuilder<InternalDocumentUpload> builder)
         {
             builder.ToTable("InternalDocumentUploads", BusinessProfileDbContext.DEFAULT_SCHEMA);
+            builder.HasTemporalTable(config =>
+            {
+                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
+                config.HistoryTable("InternalDocumentUploads");
+            });
+
 
             builder.HasKey(o => o.Id);
 
             builder.Property(o => o.Id)
                 .IsRequired()
                 .HasColumnName("InternalDocumentUploadId");
-
-            builder.HasTemporalTable(config =>
-            {
-                config.HistorySchema(BusinessProfileDbContext.HISTORY_SCHEMA);
-                config.HistoryTable("InternalDocumentUploads");
-            });
 
             builder.HasOne(a => a.BusinessProfile)
                .WithMany()
