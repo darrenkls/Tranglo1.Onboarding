@@ -1,22 +1,38 @@
+using CSharpFunctionalExtensions;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 namespace Tranglo1.Onboarding.Domain.Common
 {
-    /// <summary>
-    /// Stub — proper definition belongs in Tranglo1.Identity.Contracts NuGet package.
-    /// Replace with Contracts type once the package is updated.
-    /// </summary>
-    public class Email
+    public class Email : ValueObject
     {
         public string Value { get; }
 
-        public Email(string value) { Value = value; }
+        private Email(string value)
+        {
+            Value = value;
+        }
+
+        public static Result<Email> Create(string value)
+        {
+            value = value?.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(value))
+                return Result.Failure<Email>("Email cannot be blank");
+
+            if (!Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                return Result.Failure<Email>("Email format is invalid");
+
+            return Result.Success(new Email(value));
+        }
 
         public static implicit operator string(Email email) => email?.Value;
 
         public override string ToString() => Value;
 
-        public override bool Equals(object obj) =>
-            obj is Email other && Value == other.Value;
-
-        public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Value;
+        }
     }
 }

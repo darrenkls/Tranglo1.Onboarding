@@ -3,10 +3,6 @@ using Tranglo1.Onboarding.Domain.Entities.SignUpCodes;
 
 namespace Tranglo1.Onboarding.Domain.Entities
 {
-    /// <summary>
-    /// Stub — proper definition may belong in Tranglo1.Identity.Contracts NuGet package.
-    /// Replace with Contracts type once the package is updated.
-    /// </summary>
     public class CustomerUserRegistration : Entity
     {
         public string SignUpCode { get; set; }
