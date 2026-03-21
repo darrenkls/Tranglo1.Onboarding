@@ -7,5 +7,8 @@ namespace Tranglo1.Onboarding.Domain.Entities
         public Environment() : base() { }
 
         public Environment(int id, string name) : base(id, name) { }
+
+        public static readonly Environment Staging = new Environment(1, "Staging");
+        public static readonly Environment Production = new Environment(2, "Production");
     }
 }
