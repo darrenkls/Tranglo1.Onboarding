@@ -1,8 +1,6 @@
-using CSharpFunctionalExtensions;
-
 namespace Tranglo1.Onboarding.Domain.Entities
 {
-    public class TrangloStaffEntityAssignment : Entity
+    public class TrangloStaffEntityAssignment
     {
         public string LoginId { get; set; }
         public string TrangloEntity { get; set; }
