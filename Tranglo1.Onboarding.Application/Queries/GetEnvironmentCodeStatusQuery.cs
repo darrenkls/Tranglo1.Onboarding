@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using Dapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -34,12 +33,10 @@ namespace Tranglo1.Onboarding.Application.Queries
 
     internal class GetEnvironmentCodeStatusQueryHandler : IRequestHandler<GetEnvironmentCodeStatusQuery, Result<PartnerEnvironmentOutputDTO>>
     {
-        private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
-        public GetEnvironmentCodeStatusQueryHandler(IMapper mapper, IConfiguration config)
+        public GetEnvironmentCodeStatusQueryHandler(IConfiguration config)
         {
-            _mapper = mapper;
             _config = config;
         }
 

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using Dapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -38,13 +37,10 @@ namespace Tranglo1.Onboarding.Application.Queries
         public class GetKYCReviewResultQueryHandler : IRequestHandler<GetKYCReviewResultQuery, Result<KYCReviewResultOutputDTO>>
         {
             private readonly IBusinessProfileRepository _repository;
-            private readonly IMapper _mapper;
 
-            public GetKYCReviewResultQueryHandler(IBusinessProfileRepository repo, IMapper mapper)
+            public GetKYCReviewResultQueryHandler(IBusinessProfileRepository repo)
             {
                 _repository = repo;
-                _mapper = mapper;
-
             } 
 
             public async Task<Result<KYCReviewResultOutputDTO>> Handle(GetKYCReviewResultQuery request, CancellationToken cancellationToken)

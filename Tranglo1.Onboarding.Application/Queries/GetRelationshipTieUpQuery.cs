@@ -1,18 +1,12 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Dapper;
+﻿using Dapper;
 using MediatR;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Application.DTO.Meta;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -20,14 +14,10 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         public class GetRelationshipTieUpQueryHandler : IRequestHandler<GetRelationshipTieUpQuery, IEnumerable<RelationshipTieUpOutputDTO>>
         {
-            private readonly ApplicationUserDbContext _context;
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
 
-            public GetRelationshipTieUpQueryHandler(ApplicationUserDbContext context, IMapper mapper,IConfiguration config)
+            public GetRelationshipTieUpQueryHandler(IConfiguration config)
             {
-                _context = context;
-                _mapper = mapper;
                 _config = config;
             }
 

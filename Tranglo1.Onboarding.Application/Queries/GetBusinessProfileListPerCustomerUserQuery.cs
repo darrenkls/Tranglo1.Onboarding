@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using Dapper;
+﻿using Dapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Application.DTO;
 using Tranglo1.Onboarding.Application.MediatR;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -29,14 +26,10 @@ namespace Tranglo1.Onboarding.Application.Queries
 
     internal class GetBusinessProfileListPerCustomerUserQueryHandler : IRequestHandler<GetBusinessProfileListPerCustomerUserQuery, List<GetBusinessProfileListPerCustomerUserOutputDTO>>
     {
-        private readonly BusinessProfileDbContext _context;
-        private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
-        public GetBusinessProfileListPerCustomerUserQueryHandler(BusinessProfileDbContext context, IMapper mapper, IConfiguration config)
+        public GetBusinessProfileListPerCustomerUserQueryHandler(IConfiguration config)
         {
-            _context = context;
-            _mapper = mapper;
             _config = config;
         }
 

@@ -8,7 +8,6 @@ using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.DomainServices;
 using System.Collections.Generic;
 using Tranglo1.Onboarding.Application.DTO.BusinessProfile;
-using AutoMapper;
 using Tranglo1.Onboarding.Application.MediatR;
 using Tranglo1.Onboarding.Application.Common.Constant;
 using Tranglo1.Onboarding.Domain.Repositories;
@@ -41,7 +40,6 @@ namespace Tranglo1.Onboarding.Application.Queries
 
         public class GetBusinessProfileQueryHandler : IRequestHandler<GetBusinessProfileQuery, Result<BusinessProfileOutputDTO>>
         {
-            private readonly IMapper _mapper;
             private readonly TrangloUserManager _userManager;
             private readonly BusinessProfileService _businessProfileService;
             private readonly IBusinessProfileRepository _repository;
@@ -51,7 +49,6 @@ namespace Tranglo1.Onboarding.Application.Queries
             private readonly IConfiguration _config;
 
             public GetBusinessProfileQueryHandler(
-                    IMapper mapper,
                     TrangloUserManager userManager,
                     BusinessProfileService businessProfileService,
                     IBusinessProfileRepository repository,
@@ -67,7 +64,6 @@ namespace Tranglo1.Onboarding.Application.Queries
                 _partnerRepository = partnerRepository;
                 _partnerService = partnerService;
                 _logger = logger;
-                _mapper = mapper;
                 _config = config;
             }
 

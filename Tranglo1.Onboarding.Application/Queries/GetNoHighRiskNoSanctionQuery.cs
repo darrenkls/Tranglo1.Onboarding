@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +15,11 @@ namespace Tranglo1.Onboarding.Application.Queries
         {
             private readonly ICountrySettingRepository _repository;
             //private readonly ICountryRepository _countryRepository;
-            private readonly IMapper _mapper;
             public GetDisplayedCountriesQueryHandler(
-                IMapper mapper,
                 ICountrySettingRepository repository)
             {
                 //_countryRepository = countryRepository;
                 _repository = repository;
-                _mapper = mapper;
             }
 
             public async Task<IReadOnlyList<CountryListOutputDTO>> Handle(GetNoHighRiskNoSanctionQuery request, CancellationToken cancellationToken)

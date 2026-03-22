@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Application.DTO.Meta;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -17,13 +16,11 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         public class GetAuthorisationLevelQueryHandler : IRequestHandler<GetAuthorisationLevelQuery, IEnumerable<AuthorisationLevelOutputDTO>>
         {
-            private readonly ApplicationUserDbContext _context;
             private readonly IConfiguration _config;
 
-            public GetAuthorisationLevelQueryHandler(ApplicationUserDbContext context,IConfiguration config)
+            public GetAuthorisationLevelQueryHandler(IConfiguration config)
             {
                 _config = config;
-                _context = context;
             }
              public async Task<IEnumerable<AuthorisationLevelOutputDTO>> Handle(GetAuthorisationLevelQuery request, CancellationToken cancellationToken)
             {
