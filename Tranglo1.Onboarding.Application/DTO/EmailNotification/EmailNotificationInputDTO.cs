@@ -37,5 +37,9 @@ namespace Tranglo1.Onboarding.Application.DTO.EmailNotification
         public string UnsubscribeUrl { get; set; }
         public long PartnerSubscriptionCode { get; set; }
         public int AutoRejectPartnerApplicationExpiredDays { get; set; }
+        public string LoginUrl { get; set; }
+        public string Email1 { get; set; }
+        public string Email2 { get; set; }
+        public string Typer { get; set; }
     }
 }
