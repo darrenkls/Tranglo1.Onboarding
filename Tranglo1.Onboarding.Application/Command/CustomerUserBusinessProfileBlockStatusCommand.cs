@@ -10,6 +10,7 @@ using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.Common.Constant;
 using Tranglo1.Onboarding.Application.DTO.CustomerUser;
+using Tranglo1.Onboarding.Application.CustomerUserList.Commands;
 using Tranglo1.Onboarding.Application.Services.Identity;
 using Tranglo1.Onboarding.Infrastructure.Persistence;
 using Tranglo1.UserAccessControl;
