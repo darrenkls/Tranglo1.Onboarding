@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -6,11 +7,14 @@ using Polly.Extensions.Http;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Tranglo1.Onboarding.Domain.DomainServices;
+using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.ExternalServices.Compliance;
 using Tranglo1.Onboarding.Domain.ExternalServices.Watchlist;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Infrastructure.Commons;
 using Tranglo1.Onboarding.Infrastructure.ExternalServices;
+using Tranglo1.Onboarding.Infrastructure.Persistence;
 using Tranglo1.Onboarding.Infrastructure.Repositories;
 using Tranglo1.Onboarding.Infrastructure.Services;
 
@@ -28,7 +32,12 @@ namespace Tranglo1.Onboarding.Infrastructure.DependencyInjection
             services.AddScoped<ISignUpCodeRepository, SignUpCodeRepository>();
             services.AddScoped<IExternalUserRoleRepository, ExternalUserRoleRepository>();
             services.AddScoped<IStaffEntityQueryService, ApplicationUserRepository>();
+            services.AddScoped<IOtpRepository, OtpRepository>();
             services.AddScoped<CsvExporter>();
+
+            services.AddIdentityCore<ApplicationUser>()
+                .AddUserManager<TrangloUserManager>()
+                .AddEntityFrameworkStores<ApplicationUserDbContext>();
 
             services.AddTransient<LoggingHandler<ComplianceExternalService>>();
             services.AddHttpClient<IComplianceExternalService, ComplianceExternalService>()

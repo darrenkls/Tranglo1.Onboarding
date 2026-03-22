@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Entities.Meta;
+using Tranglo1.Onboarding.Domain.Entities.OTP;
 using Tranglo1.Onboarding.Infrastructure.Event;
 using Tranglo1.Onboarding.Infrastructure.Services;
 
@@ -66,6 +67,9 @@ namespace Tranglo1.Onboarding.Infrastructure.Persistence
         public DbSet<CountryMeta> CountryMetas { get; set; }
         public DbSet<DefaultTemplate> DefaultTemplates { get; set; }
         public DbSet<ExternalUserRoleStatus> ExternalUserRoleStatuses { get; set; }
+
+        // OTP
+        public DbSet<RequisitionOTP> RequisitionOTPs { get; set; }
 
         // Verification / Meta
         public DbSet<VerificationStatus> VerificationStatuses { get; set; }
