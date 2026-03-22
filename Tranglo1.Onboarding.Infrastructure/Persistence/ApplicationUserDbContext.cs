@@ -29,6 +29,15 @@ namespace Tranglo1.Onboarding.Infrastructure.Persistence
             builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
         }
 
+        // User / Staff DbSets
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<CustomerUser> CustomerUsers { get; set; }
+        public DbSet<CustomerUserRegistration> CustomerUserRegistrations { get; set; }
+        public DbSet<TrangloStaff> TrangloStaffs { get; set; }
+        public DbSet<TrangloStaffAssignment> TrangloStaffAssignments { get; set; }
+        public DbSet<TrangloStaffEntityAssignment> TrangloStaffEntityAssignment { get; set; }
+        public DbSet<RoleStatus> RoleStatus { get; set; }
+
         // Meta / lookup DbSets
         public DbSet<EntityType> EntityTypes { get; set; }
         public DbSet<RelationshipTieUp> RelationshipTieUps { get; set; }
