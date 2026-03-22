@@ -1,4 +1,4 @@
-namespace Tranglo1.Onboarding.Application.Common.Constant
+namespace Tranglo1.Onboarding.Domain.Common
 {
     public class BusinessOnboardSummaryStatus
     {

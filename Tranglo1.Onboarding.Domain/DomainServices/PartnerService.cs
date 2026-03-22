@@ -7,7 +7,6 @@ using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Entities.PartnerManagement;
 using Tranglo1.Onboarding.Domain.Events;
 using Tranglo1.Onboarding.Domain.Repositories;
-using Tranglo1.Onboarding.Application.Common.Constant;
 
 namespace Tranglo1.Onboarding.Domain.DomainServices
 {
