@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
+using Tranglo1.Onboarding.Domain.Entities.BusinessProfileAggregate;
 using Tranglo1.Onboarding.Domain.Entities.PartnerManagement;
 using Tranglo1.Onboarding.Domain.Events;
 using Tranglo1.Onboarding.Domain.Repositories;

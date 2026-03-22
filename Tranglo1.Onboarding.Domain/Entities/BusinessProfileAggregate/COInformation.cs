@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using System;
+using Tranglo1.Onboarding.Domain.Common;
 
 namespace Tranglo1.Onboarding.Domain.Entities
 {

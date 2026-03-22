@@ -6,7 +6,7 @@ namespace Tranglo1.Onboarding.Domain.Entities
     {
         public CustomerUser CustomerUser { get; private set; }
         public int UserId { get; set; }
-        public BusinessProfileAggregate.BusinessProfile BusinessProfile { get; private set; }
+        public BusinessProfile BusinessProfile { get; private set; }
         public int BusinessProfileCode { get; set; }
         public Environment Environment { get; set; }
         public CompanyUserAccountStatus CompanyUserAccountStatus { get; set; }
@@ -14,7 +14,7 @@ namespace Tranglo1.Onboarding.Domain.Entities
 
         private CustomerUserBusinessProfile() { }
 
-        public CustomerUserBusinessProfile(CustomerUser customerUser, BusinessProfileAggregate.BusinessProfile businessProfile)
+        public CustomerUserBusinessProfile(CustomerUser customerUser, BusinessProfile businessProfile)
         {
             CustomerUser = customerUser;
             BusinessProfile = businessProfile;

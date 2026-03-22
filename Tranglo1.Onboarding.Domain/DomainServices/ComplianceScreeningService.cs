@@ -9,7 +9,6 @@ using Tranglo1.Onboarding.Domain.ExternalServices.Compliance;
 using Tranglo1.Onboarding.Domain.ExternalServices.Compliance.Models.Requests;
 using Tranglo1.Onboarding.Domain.ExternalServices.Compliance.Models.Responses;
 using Tranglo1.Onboarding.Domain.Repositories;
-using Tranglo1.Onboarding.Application.DTO.Watchlist;
 
 namespace Tranglo1.Onboarding.Domain.DomainServices
 {

@@ -8,11 +8,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Common.RBAScreening;
+using Tranglo1.Onboarding.Domain.Common.SingleScreening;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Entities.RBAAggregate;
 using Tranglo1.Onboarding.Domain.Entities.ScreeningAggregate;
 using Tranglo1.Onboarding.Domain.Repositories;
-using Tranglo1.Onboarding.Application.DTO.Watchlist;
 
 namespace Tranglo1.Onboarding.Domain.DomainServices
 {

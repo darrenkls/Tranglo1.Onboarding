@@ -4,6 +4,7 @@ using Tranglo1.Onboarding.Domain.Entities.Meta;
 using Tranglo1.Onboarding.Domain.Entities.OTP;
 using Tranglo1.Onboarding.Infrastructure.Event;
 using Tranglo1.Onboarding.Infrastructure.Services;
+using UserType = Tranglo1.Onboarding.Domain.Entities.UserType;
 
 namespace Tranglo1.Onboarding.Infrastructure.Persistence
 {

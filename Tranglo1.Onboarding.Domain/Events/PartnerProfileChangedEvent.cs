@@ -1,4 +1,5 @@
 ﻿using System;
+using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
 
 namespace Tranglo1.Onboarding.Domain.Events
