@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -257,6 +256,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<AffiliateAndSubsidiaryInputDTO> affiliateAndSubsidiaryDtos,Guid? affiliatesAndSubsidiariesConcurrencyToken, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveAffliateAndSubsidiaryCommand command = new SaveAffliateAndSubsidiaryCommand
             {
@@ -265,7 +265,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 AffiliatesAndSubsidiariesConcurrencyToken = affiliatesAndSubsidiariesConcurrencyToken,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -305,6 +305,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<BoardofDirectorInputDTO> boardOfDirectorDtos, Guid? boardOfDirectorConcurrencyToken, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveBoardOfDirectorCommand command = new SaveBoardOfDirectorCommand
             {
@@ -313,7 +314,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 BoardOfDirectorConcurrencyToken = boardOfDirectorConcurrencyToken,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -351,6 +352,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<LegalEntitiyInputDTO> legalEntityDtos, Guid? legalEntityConcurrencyToken, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveUltimateBeneficialOwnerCommand command = new SaveUltimateBeneficialOwnerCommand
             {
@@ -359,7 +361,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 LegalEntityConcurrencyToken = legalEntityConcurrencyToken,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -399,12 +401,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<ShareholderInputDTO> shareholderDtos, long? adminSolution, Guid? shareholderConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveShareholderCommand command = new SaveShareholderCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 Shareholders = shareholderDtos,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 ShareholderConcurrencyToken = shareholderConcurrencyToken 
