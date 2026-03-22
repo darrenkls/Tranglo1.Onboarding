@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -83,9 +82,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> CreateLicenseInformation([BusinessProfileId] int businessProfileCode, [FromBody] LicenseInformationInputDTO licenseinformation, Guid? licenseInfoConcurrencyToken)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveLicenseInformationCommand command = _mapper.Map<SaveLicenseInformationCommand>(licenseinformation);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
 
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
@@ -127,9 +127,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> UpdateLicenseInformation([BusinessProfileId] int businessProfileCode, [FromBody] LicenseInformationInputDTO licenseinformation, long? adminSolution, Guid? licenseInfoConcurrencyToken, bool fromComment)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateLicenseInformationCommand command = _mapper.Map<UpdateLicenseInformationCommand>(licenseinformation);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
 
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             command.CustomerSolution = solution.HasValue ? solution.Value : null;

@@ -80,10 +80,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> CreateDeclarationInfoByCode([BusinessProfileId] int businessProfileCode, [FromBody] DeclarationsInputDTO viewModel,long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             CreateDeclarationCommand command = _mapper.Map<CreateDeclarationCommand>(viewModel);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             command.AdminSolution = adminSolution;
 
             var result = await Mediator.Send(command);
@@ -112,9 +113,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(UpdateDeclarationInfo), Tags = new[] { "KYC (Know Your Customer) - Declaration" })]
         public async Task<IActionResult> UpdateDeclarationInfo([BusinessProfileId] int businessProfileCode, [FromBody] DeclarationsInputDTO viewModel)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateDeclarationInformationCommand command = _mapper.Map<UpdateDeclarationInformationCommand>(viewModel);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
 
             var result = await Mediator.Send(command);
 
@@ -175,11 +177,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(AddSignature), Tags = new[] { "KYC (Know Your Customer) - Declaration" })]
         public async Task<IActionResult> AddSignature([BusinessProfileId] int businessProfileCode, IFormFile uploadedFile)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             AddDeclarationSignatureCommand command = new AddDeclarationSignatureCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 uploadedFile = uploadedFile,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -208,13 +211,14 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> DeleteDeclarationSignature(int declarationCode, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             DeleteDeclarationSignatureCommand command = new DeleteDeclarationSignatureCommand()
             {
                 DeclarationCode = declarationCode,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -242,13 +246,14 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> GetBusinessUserDeclaration([BusinessProfileId] int businessProfileCode,long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             GetBusinessUserDeclarationByBusinessProfileCodeQuery query = new GetBusinessUserDeclarationByBusinessProfileCodeQuery
             {
                 BusinessProfileCode = businessProfileCode,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(query);
@@ -281,6 +286,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             long? adminSolution, Guid? businessUserDeclarationConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             CreateBusinessUserDeclarationCommand command = new CreateBusinessUserDeclarationCommand()
             {
@@ -288,7 +294,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 InputDTO = inputDTO,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 BusinessUserDeclarationConcurrencyToken = businessUserDeclarationConcurrencyToken,
             };
        
@@ -331,6 +337,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] BusinessUserDeclarationInputDTO inputDTO,long? adminSolution, Guid? businessUserDeclarationConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             UpdateBusinessUserDeclarationCommand command = new UpdateBusinessUserDeclarationCommand()
             {
@@ -338,7 +345,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 InputDTO = inputDTO,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 BusinessUserDeclarationConcurrencyToken = businessUserDeclarationConcurrencyToken
             };
 
@@ -382,6 +389,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> AddBusinessUserDeclarationSignature([BusinessProfileId] int businessProfileCode, IFormFile uploadedFile,long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             AddBusinessUserDeclarationSignatureCommand command = new AddBusinessUserDeclarationSignatureCommand()
             {
@@ -389,7 +397,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 uploadedFile = uploadedFile,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -418,6 +426,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> GetBusinessUserDeclarationSignature([BusinessProfileId] int businessProfileCode, Guid documentId, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             GetBusinessUserDeclarationSignatureByDocumentID query = new GetBusinessUserDeclarationSignatureByDocumentID
             {
@@ -425,7 +434,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 DocumentId = documentId,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(query);
@@ -455,13 +464,14 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> DeleteBusinessUserDeclarationSignature( int businessUserDeclarationCode, long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             DeleteBusinessUserDeclarationSignatureCommand command = new DeleteBusinessUserDeclarationSignatureCommand()
             {
                 BusinessUserDeclarationCode = businessUserDeclarationCode,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);

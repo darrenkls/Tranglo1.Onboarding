@@ -739,12 +739,13 @@ namespace Tranglo1.Onboarding.Application.Controllers
         [SwaggerOperation(OperationId = nameof(UpdatePartnerRegistration), Tags = new[] { "Partner" })]
         public async Task<IActionResult> UpdatePartnerRegistration([PartnerCode] long partnerCode, [FromBody] UpdatePartnerInputDTO updatePartnerRegistrationInputDTO, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdatePartnerRegistrationCommand command = new UpdatePartnerRegistrationCommand()
             {
                 PartnerCode = partnerCode,
                 UpdatePartnerRegistration = updatePartnerRegistrationInputDTO,
                 UserBearerToken = Request.Headers["Authorization"].ToString(),
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             command.AdminSolution = adminSolution;
@@ -1523,11 +1524,12 @@ namespace Tranglo1.Onboarding.Application.Controllers
         [SwaggerOperation(OperationId = nameof(GetSubscriptionsEntityRoles), Tags = new[] { "Partner" })]
         public async Task<ActionResult<GetSalesPartnerSubscriptionOutputDTO>> GetSubscriptionsEntityRoles([PartnerCode] long partnerCode, [FromQuery] string entity)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             GetSubscriptionsEntityRolesQuery query = new GetSubscriptionsEntityRolesQuery
             {
                 PartnerCode = partnerCode,
                 Entity = entity,
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(query);
@@ -1662,7 +1664,8 @@ namespace Tranglo1.Onboarding.Application.Controllers
         public async Task<IActionResult> RequestEmailOTPCode()
         {
 
-            var user = User.GetSubjectId().Value;
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
+            var user = subjectId.HasValue ? subjectId.Value : null;
 
             if (user == null)
             {

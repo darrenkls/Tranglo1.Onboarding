@@ -113,11 +113,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> PostComplianceOfficerAssignmentByBusinessProfile([BusinessProfileId] int businessProfileCode, [FromBody] GetComplianceOfficerInputDTOByBusinessProfile complianceOfficerInputDTO, int adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             PostComplianceOfficerAssignmentCommand command = new PostComplianceOfficerAssignmentCommand
             {
                 COOfficerAssignedLoginID = complianceOfficerInputDTO.COOfficerAssignedLoginID,
                 BusinessProfileCode = businessProfileCode,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 AdminSolution = adminSolution
             };
             var result = await Mediator.Send(command);
@@ -197,9 +198,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> GetBusinessProfile([BusinessProfileId] int businessProfileCode)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             GetBusinessProfileQuery query = new GetBusinessProfileQuery
             {
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 BusinessProfileCode = businessProfileCode
             };
 
@@ -244,8 +246,9 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> UpdateBusinessProfile([BusinessProfileId] int businessProfileCode, [FromBody] BusinessProfileInputDTO businessProfile, long? adminSolution, Guid? businessProfileConcurrencyToken, bool fromComment)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateBusinessProfileCommand command = _mapper.Map<UpdateBusinessProfileCommand>(businessProfile);
-            command.LoginId = User.GetSubjectId().Value;
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             command.BusinessProfileCode = businessProfileCode;
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
@@ -292,10 +295,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SubmitKYCCommand command = new SubmitKYCCommand()
             {
                 businessProfileCode = businessProfileCode,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null, // convert Maybe<string> to string
                 ReviewConcurrencyToken = reviewConcurrencyToken
 
@@ -343,10 +347,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SubmitBusinessUserKYCCommand command = new SubmitBusinessUserKYCCommand()
             {
                 BusinessProfileCode = businessProfileCode,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 EntityCode = entityCode,
@@ -439,10 +444,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> AddComments([BusinessProfileId] int businessProfileCode, int categoryId, [FromBody] CommentAndReviewRemarksInputDTO comments, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveCommentsCommand command = _mapper.Map<SaveCommentsCommand>(comments);
             command.BusinessProfileCode = businessProfileCode;
             command.DocumentCategoryCode = categoryId;
-            command.LoginId = User.GetSubjectId().Value;
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
             command.AdminSolution = adminSolution;
@@ -487,13 +493,14 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UploadCommentDocumentsCommand command = new UploadCommentDocumentsCommand()
             {
 
                 BusinessProfileCode = businessProfileCode,
                 documentcommentBPCode = documentcommentBPcode,
                 uploadedFile = uploadedFile,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null, // convert Maybe<string> to string
                 AdminSolution = adminSolution
             };
@@ -524,10 +531,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> AddReviewRemarks([BusinessProfileId] int businessProfileCode, int categoryId, [FromBody] CommentAndReviewRemarksInputDTO comments, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveReviewRemarksCommand command = _mapper.Map<SaveReviewRemarksCommand>(comments);
             command.BusinessProfileCode = businessProfileCode;
             command.DocumentCategoryCode = categoryId;
-            command.LoginId = User.GetSubjectId().Value;
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
             command.AdminSolution = adminSolution;
@@ -631,12 +639,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             GetKYCBusinessUserSummaryByCodeQuery query = new GetKYCBusinessUserSummaryByCodeQuery()
             {
                 BusinessProfileCode = businessProfileCode,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 EntityCode = entityCode
             };
 
@@ -675,12 +684,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveDocumentCommand command = new SaveDocumentCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 DocumentCategoryCode = categoryId,
                 uploadedFile = uploadedFile,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null, // convert Maybe<string> to string
                 AdminSolution = adminSolution,
                 FromComment = fromComment
@@ -743,11 +753,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> UploadInternalDocumentCommand([BusinessProfileId] int businessProfileCode, List<IFormFile> uploadedFile)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UploadInternalDocumentCommand command = new UploadInternalDocumentCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 uploadedFile = uploadedFile,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 UserType = User.GetUserType()
 
 
@@ -780,11 +791,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> RemoveInternalDocumentUpload([BusinessProfileId] int businessProfileCode, Guid documentId)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             RemoveInternalDocumentUploadCommand command = new RemoveInternalDocumentUploadCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 DocumentId = documentId,
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -814,12 +826,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> UpdateDocumentInfo([BusinessProfileId] int businessProfileCode, int categoryId, Guid documentId, [FromBody] DocumentInfoInputDTO DocumentInfoInputDTOs, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateDocumentInfoCommand command = _mapper.Map<UpdateDocumentInfoCommand>(DocumentInfoInputDTOs);
 
             command.BusinessProfileCode = businessProfileCode;
             command.DocumentCategoryCode = categoryId;
             command.documentId = documentId;
-            command.LoginId = User.GetSubjectId().Value;
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             command.AdminSolution = adminSolution;
 
             var result = await Mediator.Send(command);
@@ -851,11 +864,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> UpdateDocumentCategoryBPStatus([BusinessProfileId] int businessProfileCode, int categoryId, [FromBody] DocumentCategoryInfoInputDTO documentCategoryInfoInputDTOs, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateDocumentCategoriesInfoCommand command = _mapper.Map<UpdateDocumentCategoriesInfoCommand>(documentCategoryInfoInputDTOs);
 
             command.BusinessProfileCode = businessProfileCode;
             command.DocumentCategoryCode = categoryId;
-            command.LoginId = User.GetSubjectId().Value;
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
             command.AdminSolution = adminSolution;
 
             var result = await Mediator.Send(command);
@@ -953,12 +967,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             DeleteDocumentsUploadByDocIdCommand command = new DeleteDocumentsUploadByDocIdCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 DocumentCategoryCode = categoryId,
                 DocumentId = documentId,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null, // convert Maybe<string> to string
                 AdminSolution = adminSolution
             };
@@ -1203,10 +1218,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
 
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             GetKYCSubmissionStatusByIdQuery query = new GetKYCSubmissionStatusByIdQuery
             {
                 BusinessProfileCode = businessProfileCode,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 AdminSolution = adminSolution,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
             };
@@ -1513,12 +1529,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> ApproveKYCRequisition([RoleCode] string roleCode, [TrangloEntityId] string entityCode, KYCRequisitionApproveInputDTO requisitionApproveInputDTO, int adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             ApproveKYCRequisitionCommand command = new ApproveKYCRequisitionCommand
             {
                 KYCRequisitionApproveInputDTO = requisitionApproveInputDTO,
                 UserId = User.GetUserId().Value,
                 EntityCode = entityCode,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 AdminSolution = adminSolution
             };
 
@@ -1580,10 +1597,11 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> RequestKycRequisitionOTPCode(string requisitionCode)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             RequestKYCApprovalOTPCommand command = new RequestKYCApprovalOTPCommand
             {
                 RequisitionCode = requisitionCode,
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var result = await Mediator.Send(command);
@@ -1615,12 +1633,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         
         public async Task<IActionResult> ChangeCustomerTypeHandling([BusinessProfileId] int businessProfileCode, [FromBody] ChangeCustomerTypeInputDTO inputDTO, long adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             ChangeCustomerTypeCommand command = new ChangeCustomerTypeCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 AdminSolution = adminSolution,
                 InputDTO = inputDTO,
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
             var result = await Mediator.Send(command);
 
@@ -1868,12 +1887,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
 
         public async Task<IActionResult> ApproveRBARequisition([RoleCode] string roleCode,ApproveRBARequisitionInputDTO approveRBARequisitionInputDTO)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             ApproveRBARequisitionCommand command = new ApproveRBARequisitionCommand
             {
                 ApproveRBARequisitionInputDTO = approveRBARequisitionInputDTO,
                 UserId = User.GetUserId().Value,
-                LoginId = User.GetSubjectId().Value,
-               
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
+
             };
 
             var result = await Mediator.Send(command);
@@ -1903,11 +1923,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
 
         public async Task<IActionResult> RejectBARequisition([RoleCode] string roleCode, RejectRBARequisitionInputDTO rejectRBARequisitionInputDTO)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             RejectRBARequisitionCommand command = new RejectRBARequisitionCommand
             {
                 RejectRBARequisitionInputDTO = rejectRBARequisitionInputDTO,
                 UserId = User.GetUserId().Value,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
 
             };
 

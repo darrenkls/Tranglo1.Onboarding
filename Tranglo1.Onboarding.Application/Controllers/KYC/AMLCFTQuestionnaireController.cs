@@ -53,13 +53,14 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<AMLCFTFlagOutputDTO> GetAMLCFTFlag([BusinessProfileId] int businessProfileCode, [FromQuery] long? adminSolution)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             GetAMLCFTFlagByIdQuery query = new GetAMLCFTFlagByIdQuery
             {
                 BusinessProfileCode = businessProfileCode,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
-                LoginId = User.GetSubjectId().Value
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             return await Mediator.Send(query);
@@ -85,7 +86,8 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 AdminSolution = adminSolution,
                 TrangloEntityCode = trangloEntityCode
             };
-            query.LoginId = User.GetSubjectId().Value;
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
+            query.LoginId = subjectId.HasValue ? subjectId.Value : null;
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
             query.CustomerSolution = solution.HasValue ? solution.Value : null;
 
@@ -111,12 +113,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             //SaveAMLCFTQuestionnaireAnswersCommand command = _mapper.Map<SaveAMLCFTQuestionnaireAnswersCommand>(questionnaireAnswersDTO);
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveAMLCFTQuestionnaireAnswersCommand command = new SaveAMLCFTQuestionnaireAnswersCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 QuestionnaireDTO = questionnaireDTO,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 AMLCFTQuestionnaireConcurrencyToken = aMLCFTQuestionnaireConcurrencyToken

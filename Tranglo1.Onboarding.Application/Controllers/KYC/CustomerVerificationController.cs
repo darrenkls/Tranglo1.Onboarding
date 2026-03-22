@@ -56,6 +56,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         public async Task<IActionResult> SaveCustomerVerification([BusinessProfileId] int businessProfileCode, [FromBody] CustomerVerificationInputDTO inputDTO, long? adminSolution, Guid? customerVerificationConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User); // convert Maybe<string> to string
 
             SaveCustomerVerificationCommand command = new SaveCustomerVerificationCommand
             {
@@ -63,7 +64,7 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
                 InputDTO = inputDTO,
                 CustomerSolution = solution.HasValue ? solution.Value : null, // convert Maybe<string> to string
                 AdminSolution = adminSolution,
-                LoginId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User).GetValueOrDefault(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerVerificationConcurrencyToken = customerVerificationConcurrencyToken
             };
 
