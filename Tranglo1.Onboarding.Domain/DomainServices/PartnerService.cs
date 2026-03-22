@@ -14,18 +14,18 @@ namespace Tranglo1.Onboarding.Domain.DomainServices
     {
         private readonly IPartnerRepository partnerRepository;
         private readonly IBusinessProfileRepository businessProfileRepository;
-        private readonly IStaffEntityQueryService staffEntityQueryService;
+        private readonly IApplicationUserRepository applicationUserRepository;
 
         protected IPartnerRepository Repository => partnerRepository;
 
 		public PartnerService(
             IPartnerRepository partnerRepository,
              IBusinessProfileRepository businessProfileRepository,
-             IStaffEntityQueryService staffEntityQueryService)
+			 IApplicationUserRepository applicationUserRepository)
         {
             this.partnerRepository = partnerRepository;
             this.businessProfileRepository = businessProfileRepository;
-            this.staffEntityQueryService = staffEntityQueryService;
+            this.applicationUserRepository = applicationUserRepository;
         }
 
         public async Task<PartnerAgreementTemplate> AddPartnerAgreementTemplateUploadAsync(PartnerAgreementTemplate partnerAgreementTemplate)
@@ -199,7 +199,7 @@ namespace Tranglo1.Onboarding.Domain.DomainServices
 
         public async Task<bool> UserHasTrangloEntity(TrangloStaff trangloStaff, long partnerCode)
         {
-            var trangloStaffEntity = await this.staffEntityQueryService.GetTrangloStaffEntityAssignmentById(trangloStaff.LoginId);
+            var trangloStaffEntity = await this.applicationUserRepository.GetTrangloStaffEntityAssignmentById(trangloStaff.LoginId);
 
             var trangloEntityByPartner = await this.partnerRepository.GetTrangloEntitiesByPartnerAsync(partnerCode);
 
