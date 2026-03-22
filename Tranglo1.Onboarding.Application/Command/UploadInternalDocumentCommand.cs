@@ -27,7 +27,7 @@ namespace Tranglo1.Onboarding.Application.Command
     internal class UploadInternalDocumentCommand : BaseCommand<Result<string>>
     {
         public int BusinessProfileCode { get; set; }
-        public CustomerIdentity.Infrastructure.Services.UserType UserType { get; set; }
+        public Onboarding.Infrastructure.Services.UserType UserType { get; set; }
         public long RequestId { get; set; }
         public string LoginId { get; set; }
         public List<IFormFile> uploadedFile { get; set; }

@@ -24,7 +24,7 @@ namespace Tranglo1.Onboarding.Application.Command
     {
         public long PartnerCode { get; set; }
         public IFormFile UploadedFile { get; set; }
-        public CustomerIdentity.Infrastructure.Services.UserType UserType { get; set; }
+        public Onboarding.Infrastructure.Services.UserType UserType { get; set; }
         public string CustomerSolution { get; set; }
         public long? AdminSolution { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

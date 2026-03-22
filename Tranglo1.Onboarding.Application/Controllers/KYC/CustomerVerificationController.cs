@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CSharpFunctionalExtensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -7,12 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http.ModelBinding;
 using Tranglo1.Onboarding.Application.Attributes;
 using Tranglo1.Onboarding.Application.Command;
 using Tranglo1.Onboarding.Application.DTO;
