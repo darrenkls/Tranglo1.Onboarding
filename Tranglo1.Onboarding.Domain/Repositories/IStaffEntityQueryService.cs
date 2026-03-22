@@ -6,6 +6,6 @@ namespace Tranglo1.Onboarding.Domain.Repositories
 {
     public interface IStaffEntityQueryService
     {
-        Task<IEnumerable<TrangloStaffEntityAssignment>> GetTrangloStaffEntityAssignmentById(string loginId);
+        Task<List<TrangloStaffEntityAssignment>> GetTrangloStaffEntityAssignmentById(string loginId);
     }
 }
