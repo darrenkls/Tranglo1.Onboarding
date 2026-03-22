@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tranglo1.Onboarding.Domain.Entities;
+using Tranglo1.Onboarding.Domain.Entities.BusinessProfileAggregate;
 using Tranglo1.Onboarding.Domain.Entities.PartnerManagement;
 using Tranglo1.Onboarding.Domain.Events;
 using Tranglo1.Onboarding.Infrastructure.Event;
