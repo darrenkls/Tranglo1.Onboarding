@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -83,9 +82,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(CreateComplianceOfficer), Tags = new[] { "KYC (Know Your Customer) - Compliance Officer Information" })]
         public async Task<IActionResult> CreateComplianceOfficer([BusinessProfileId] int businessProfileCode, [FromBody] ComplianceOfficersInputDTO coInformation, long? adminSolution, Guid? coInformationConcurrencyToken)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveCoInformationCommand command = _mapper.Map<SaveCoInformationCommand>(coInformation);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
 
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); 
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
@@ -127,9 +127,10 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(UpdateComplianceOfficer), Tags = new[] { "KYC (Know Your Customer) - Compliance Officer Information" })]
         public async Task<IActionResult> UpdateComplianceOfficer([BusinessProfileId] int businessProfileCode, [FromBody] ComplianceOfficersInputDTO coInformation, long? adminSolution, Guid? coInformationConcurrencyToken)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             UpdateCoInformationCommand command = _mapper.Map<UpdateCoInformationCommand>(coInformation);
             command.BusinessProfileCode = businessProfileCode;
-            command.LoginId = User.GetSubjectId();
+            command.LoginId = subjectId.HasValue ? subjectId.Value : null;
 
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); 
             command.CustomerSolution = solution.HasValue ? solution.Value : null;
@@ -174,11 +175,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         {
             try
             {
+                var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
                 SaveCOSignatureCommand command = new SaveCOSignatureCommand()
                 {
                     BusinessProfileCode = businessProfileCode,
                     uploadedFile = uploadedFile,
-                    LoginId = User.GetSubjectId()
+                    LoginId = subjectId.HasValue ? subjectId.Value : null
                 };
 
                 var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
@@ -217,11 +219,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(DeleteCOSignature), Tags = new[] { "KYC (Know Your Customer) - Compliance Officer Information" })]
         public async Task<IActionResult> DeleteCOSignature([BusinessProfileId] int businessProfileCode, Guid documentId, long? adminSolution)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             DeleteCOSignatureCommand command = new DeleteCOSignatureCommand()
             {
                 BusinessProfileCode = businessProfileCode,
                 CoSignatureDocumentId = documentId,
-                LoginId = User.GetSubjectId()
+                LoginId = subjectId.HasValue ? subjectId.Value : null
             };
 
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);

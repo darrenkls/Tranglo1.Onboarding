@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -71,11 +70,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
         [SwaggerOperation(OperationId = nameof(SaveTransactionEvaluation), Tags = new[] { "KYC (Know Your Customer) - Transaction Evaluation" })]
         public async Task<IActionResult> SaveTransactionEvaluation([BusinessProfileId] int businessProfileCode, [FromBody] TransactionEvaluationInputDTO transactionEvaluationInputDTO, Guid? transactionEvalConcurrencyToken)
         {
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveTransactionEvaluationCommand command = new SaveTransactionEvaluationCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 TransactionEvaluationInputDTO = transactionEvaluationInputDTO,
-                LoginId = User.GetSubjectId().Value,
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 TransactionEvalConcurrencyToken = transactionEvalConcurrencyToken
             };
 

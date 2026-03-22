@@ -451,12 +451,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<ParentHoldingCompanyInputDTO> parentHoldingCompanyDtos, long? adminSolution, Guid? parentHoldingsConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SaveParentHoldingCompanyCommand command = new SaveParentHoldingCompanyCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 ParentHoldingCompany = parentHoldingCompanyDtos,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 ParentHoldingsConcurrencyToken = parentHoldingsConcurrencyToken
@@ -499,12 +500,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<PoliticallyExposedPersonInputDTO> politicallyExposedPersonDtos, long? adminSolution, Guid? politicalExposedPersonsConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SavePoliticallyExposedPersonCommand command = new SavePoliticallyExposedPersonCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 PoliticallyExposedPersons = politicallyExposedPersonDtos,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 PoliticalExposedPersonsConcurrencyToken = politicalExposedPersonsConcurrencyToken
@@ -545,12 +547,13 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<PrimaryOfficerInputDTO> primaryOfficerDtos, long? adminSolution, Guid? primaryOfficerConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User); // convert Maybe<string> to string
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
 
             SavePrimaryOfficerCommand command = new SavePrimaryOfficerCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 PrimaryOfficers = primaryOfficerDtos,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 PrimaryOfficerConcurrencyToken = primaryOfficerConcurrencyToken
@@ -589,11 +592,12 @@ namespace Tranglo1.Onboarding.Application.Controllers.KYC
             [FromBody] IEnumerable<AuthorisedPersonInputDTO> authorisedPersonInputDTOs, long? adminSolution, Guid? authorisedPersonConcurrencyToken)
         {
             var solution = System.Security.Claims.ClaimsPrincipalExtensions.GetSolutionCode(User);
+            var subjectId = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(User);
             SaveAuthorisedPersonCommand command = new SaveAuthorisedPersonCommand
             {
                 BusinessProfileCode = businessProfileCode,
                 AuthorisedPeople = authorisedPersonInputDTOs,
-                LoginId = User.GetSubjectId(),
+                LoginId = subjectId.HasValue ? subjectId.Value : null,
                 CustomerSolution = solution.HasValue ? solution.Value : null,
                 AdminSolution = adminSolution,
                 AuthorisedPersonConcurrencyToken = authorisedPersonConcurrencyToken
