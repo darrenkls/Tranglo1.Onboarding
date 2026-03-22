@@ -1953,25 +1953,25 @@ namespace Tranglo1.Onboarding.Infrastructure.Repositories
         {
             return await dbContext.EmailRecipients.
               Where(x => x.RecipientType.Id == bccType
-                && x.NotificationTemplate.Id == notificationTemplate)
+                && x.NotificationTemplateCode == notificationTemplate)
               .ToListAsync();
         }
 
         public async Task<List<EmailRecipient>> GetRecipientEmailByCollectionTier(long collectionTierCode, long recipientType, long notificationTemplate)
         {
             return await dbContext.EmailRecipients.
-              Where(x => x.CollectionTier.Id == collectionTierCode
+              Where(x => x.CollectionTierCode == collectionTierCode
                 && x.RecipientType.Id == recipientType
-                && x.NotificationTemplate.Id == notificationTemplate)
+                && x.NotificationTemplateCode == notificationTemplate)
               .ToListAsync();
         }
 
         public async Task<List<EmailRecipient>> GetRecipientEmailByAuthorityLevel(long authorityLevelCode, long recipientTypeCode, long notificationTemplateCode)
         {
             return await dbContext.EmailRecipients.
-               Where(x => x.AuthorityLevel.Id == authorityLevelCode
+               Where(x => x.AuthorityLevelCode == authorityLevelCode
                 && x.RecipientType.Id == recipientTypeCode
-                && x.NotificationTemplate.Id == notificationTemplateCode)
+                && x.NotificationTemplateCode == notificationTemplateCode)
                .ToListAsync();
         }
 

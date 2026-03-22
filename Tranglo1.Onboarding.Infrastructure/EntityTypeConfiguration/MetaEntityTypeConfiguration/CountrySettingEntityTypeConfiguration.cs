@@ -16,7 +16,7 @@ namespace Tranglo1.Onboarding.Infrastructure.EntityTypeConfiguration
             builder.ToTable("CountrySettings", ApplicationUserDbContext.DEFAULT_SCHEMA);
             builder.HasTemporalTable(config =>
             {
-                config.HistorySchema(CountrySettingDbContext.HISTORY_SCHEMA);
+                config.HistorySchema(ApplicationUserDbContext.HISTORY_SCHEMA);
                 config.HistoryTable("CountrySettings");
             });
 

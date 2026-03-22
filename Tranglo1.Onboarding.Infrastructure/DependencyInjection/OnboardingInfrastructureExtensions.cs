@@ -43,8 +43,11 @@ namespace Tranglo1.Onboarding.Infrastructure.DependencyInjection
                     e.DefaultRequestHeaders.UserAgent.Clear();
                     e.DefaultRequestHeaders.UserAgent.ParseAdd($"ComplianceExternalService-{hostEnvironment.EnvironmentName}/1.0");
 
-                    e.DefaultRequestVersion = new Version(2, 0);
-                    e.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
+                    // The following settings are available in .NET 5.0 or greater
+                    #if NET5_0_OR_GREATER
+                        e.DefaultRequestVersion = new Version(2, 0);
+                        e.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
+                    #endif
                 })
                 .AddHttpMessageHandler<LoggingHandler<ComplianceExternalService>>()
                 .AddPolicyHandler(GetRetryPolicy());
@@ -62,8 +65,11 @@ namespace Tranglo1.Onboarding.Infrastructure.DependencyInjection
                     e.DefaultRequestHeaders.UserAgent.Clear();
                     e.DefaultRequestHeaders.UserAgent.ParseAdd($"WatchlistNotificationExternalService-{hostEnvironment.EnvironmentName}/1.0");
 
-                    e.DefaultRequestVersion = new Version(2, 0);
-                    e.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
+                    // The following settings are available in .NET 5.0 or greater
+                    #if NET5_0_OR_GREATER
+                        e.DefaultRequestVersion = new Version(2, 0);
+                        e.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrLower;
+                    #endif
                 })
                 .AddHttpMessageHandler<LoggingHandler<WatchlistNotificationExternalService>>()
                 .AddPolicyHandler(GetRetryPolicy());
