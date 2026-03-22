@@ -1,17 +1,11 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Dapper;
+﻿using Dapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using Tranglo1.Onboarding.Domain.Entities;
-using Tranglo1.Onboarding.Domain.Repositories;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -19,14 +13,10 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         public class GetBusinessNatureListQueryHandler : IRequestHandler<GetBusinessNatureListQuery, IEnumerable<BusinessNatureListOutputDTO>>
         {
-            private readonly BusinessProfileDbContext _context;
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
 
-            public GetBusinessNatureListQueryHandler(BusinessProfileDbContext context, IMapper mapper, IConfiguration config)
+            public GetBusinessNatureListQueryHandler(IConfiguration config)
             {
-                _context = context;
-                _mapper = mapper;
                 _config = config;
             }
 

@@ -1,13 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Tranglo1.Onboarding.Domain.DomainServices;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.DTO.AMLCFTQuestionnaire;
@@ -30,14 +24,10 @@ namespace Tranglo1.Onboarding.Application.Command
     }
     internal class DeleteAMLCFTDisplayRuleCommandHandler : IRequestHandler<DeleteAMLCFTDisplayRuleCommand, Result<AMLCFTDisplayRules>>
     {
-        private readonly IConfiguration _config;
-        private readonly BusinessProfileService _businessProfileService;
         private readonly IBusinessProfileRepository _repository;
 
-        public DeleteAMLCFTDisplayRuleCommandHandler(IConfiguration config, BusinessProfileService businessProfileService, IBusinessProfileRepository repository)
+        public DeleteAMLCFTDisplayRuleCommandHandler(IBusinessProfileRepository repository)
         {
-            _config = config;
-            _businessProfileService = businessProfileService;
             _repository = repository;
         }
         public async Task<Result<AMLCFTDisplayRules>> Handle(DeleteAMLCFTDisplayRuleCommand request, CancellationToken cancellationToken)

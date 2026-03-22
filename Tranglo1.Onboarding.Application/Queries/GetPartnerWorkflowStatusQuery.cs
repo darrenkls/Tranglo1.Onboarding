@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.DomainServices;
@@ -32,16 +30,11 @@ namespace Tranglo1.Onboarding.Application.Queries
 
     internal class GetPartnerWorkflowStatusQueryHandler : IRequestHandler<GetPartnerWorkflowStatusQuery, Result<PartnerOnboardingOutputDTO>>
     {
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _config;
         private readonly PartnerService _partnerService;
         private readonly IPartnerRepository _partnerRepository;
 
-        public GetPartnerWorkflowStatusQueryHandler(IMapper mapper, IConfiguration config,
-            PartnerService partnerService, IPartnerRepository partnerRepository)
+        public GetPartnerWorkflowStatusQueryHandler(PartnerService partnerService, IPartnerRepository partnerRepository)
         {
-            _mapper = mapper;
-            _config = config;
             _partnerService = partnerService;
             _partnerRepository = partnerRepository;
         }

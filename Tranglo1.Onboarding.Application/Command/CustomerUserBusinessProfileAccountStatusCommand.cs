@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Http;
 using MediatR;
 using CSharpFunctionalExtensions;
 using Tranglo1.Onboarding.Domain.DomainServices;
@@ -38,7 +37,6 @@ namespace Tranglo1.Onboarding.Application.Command
         private readonly IBusinessProfileRepository _businessProfileRepository;
         private readonly BusinessProfileService _businessProfileService;
         private readonly ILogger<UnlockUserCommandHandler> _logger;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IBusinessProfileContext businessProfileContext;
 
         public CustomerUserBusinessProfileAccountStatusCommandHandler(
@@ -47,7 +45,6 @@ namespace Tranglo1.Onboarding.Application.Command
                 BusinessProfileService businessProfileService,
                 TrangloUserManager userManager,
                 ILogger<UnlockUserCommandHandler> logger,
-                IHttpContextAccessor httpContextAccessor,
                 IBusinessProfileContext businessProfileContext
             )
         {
@@ -56,7 +53,6 @@ namespace Tranglo1.Onboarding.Application.Command
             _businessProfileService = businessProfileService;
             _userManager = userManager;
             _logger = logger;
-            _httpContextAccessor = httpContextAccessor;
             this.businessProfileContext = businessProfileContext;
         }
         public async Task<Result> Handle(CustomerUserBusinessProfileAccountStatusCommand request, CancellationToken cancellationToken)

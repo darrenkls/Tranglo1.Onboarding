@@ -1,15 +1,11 @@
-﻿using AutoMapper;
-using Dapper;
+﻿using Dapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.DTO.Meta;
 
 namespace Tranglo1.Onboarding.Application.Queries
@@ -18,13 +14,9 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         public class GetKYCWorkflowStatusListQueryHandler : IRequestHandler<GetKYCWorkflowStatusListQuery, IEnumerable<WorkflowStatusListOutputDTO>>
         {
-            private readonly IBusinessProfileRepository _repository;
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
-            public GetKYCWorkflowStatusListQueryHandler(IBusinessProfileRepository repo, IMapper mapper, IConfiguration config)
+            public GetKYCWorkflowStatusListQueryHandler(IConfiguration config)
             {
-                _repository = repo;
-                _mapper = mapper;
                 _config = config;
             }
 

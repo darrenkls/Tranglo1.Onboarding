@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using Dapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -55,14 +54,12 @@ namespace Tranglo1.Onboarding.Application.Queries
 
         public class GetPartnerListingQueryHandler : IRequestHandler<GetPartnerListingQuery, PagedResult<PartnerListingOutputDTO>>
         {
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
             private readonly PartnerService _partnerService;
             private readonly IPartnerRepository _partnerRepository;
 
-            public GetPartnerListingQueryHandler(IMapper mapper, IConfiguration config, PartnerService partnerService, IPartnerRepository partnerRepository)
+            public GetPartnerListingQueryHandler(IConfiguration config, PartnerService partnerService, IPartnerRepository partnerRepository)
             {
-                _mapper = mapper;
                 _config = config;
                 _partnerService = partnerService;
                 _partnerRepository = partnerRepository;

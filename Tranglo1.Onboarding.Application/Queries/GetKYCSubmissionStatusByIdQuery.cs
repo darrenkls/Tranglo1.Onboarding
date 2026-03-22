@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -41,21 +40,15 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         private readonly BusinessProfileService _businessProfileService;
         private readonly ILogger<GetKYCSubmissionStatusByIdQuery> _logger;
-        private readonly IMapper _mapper;
         private readonly TrangloUserManager _userManager;
-
-
 
         public GetKYCSubmissionStatusByIdQueryHandler(BusinessProfileService businessProfileService,
                                              ILogger<GetKYCSubmissionStatusByIdQuery> logger,
-                                              IMapper mapper, TrangloUserManager userManager
-)
+                                             TrangloUserManager userManager)
         {
             _businessProfileService = businessProfileService;
             _logger = logger;
-            _mapper = mapper;
             _userManager = userManager;
-
         }
 
         public async Task<Result<GetKYCSubmissionStatusOutputDto>> Handle(GetKYCSubmissionStatusByIdQuery query, CancellationToken cancellationToken)

@@ -1,12 +1,5 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.DomainServices;
@@ -39,17 +32,13 @@ namespace Tranglo1.Onboarding.Application.Queries
 
     internal class GetPartnerOnboardingStatusQueryHandler : IRequestHandler<GetPartnerOnboardingStatusQuery, Result<PartnerOnboardingOutputDTO>>
     {
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _config;
         private readonly PartnerService _partnerService;
         private readonly BusinessProfileService _businessProfileService;
         private readonly IPartnerRepository _partnerRepository;
 
-        public GetPartnerOnboardingStatusQueryHandler(IMapper mapper, IConfiguration config,
+        public GetPartnerOnboardingStatusQueryHandler(
             PartnerService partnerService, BusinessProfileService businessProfileService, IPartnerRepository partnerRepository)
         {
-            _mapper = mapper;
-            _config = config;
             _partnerService = partnerService;
             _businessProfileService = businessProfileService;
             _partnerRepository = partnerRepository;

@@ -1,16 +1,9 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using Dapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Application.Common.Constant;
@@ -31,15 +24,11 @@ namespace Tranglo1.Onboarding.Application.Queries
 
         public class GetIndividualPartnerListingQueryHandler : IRequestHandler<GetIndividualPartnerListingQuery, Result<IndividualPartnerListingOutputDTO>>
         {
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
-            private IHttpClientFactory _HttpClientFactory;
-            
-            public GetIndividualPartnerListingQueryHandler(IMapper mapper, IConfiguration config, IHttpClientFactory httpClientFactory)
+
+            public GetIndividualPartnerListingQueryHandler(IConfiguration config)
             {
-                _mapper = mapper;
                 _config = config;
-                _HttpClientFactory = httpClientFactory;
             }
 
             public async Task<Result<IndividualPartnerListingOutputDTO>> Handle(GetIndividualPartnerListingQuery request, CancellationToken cancellationToken)

@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.DomainServices;
-using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.DTO;
 using Tranglo1.Onboarding.Application.MediatR;
 
@@ -28,20 +22,11 @@ namespace Tranglo1.Onboarding.Application.Queries
 
     internal class GetBusinessOnboardingStatusQueryHandler : IRequestHandler<GetBusinessOnboardingStatusQuery, Result<BusinessOnboardingStatusOutputDTO>>
     {
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _config;
         private readonly PartnerService _partnerService;
-        private readonly BusinessProfileService _businessProfileService;
-        private readonly IPartnerRepository _partnerRepository;
 
-        public GetBusinessOnboardingStatusQueryHandler(IMapper mapper, IConfiguration config,
-            PartnerService partnerService, BusinessProfileService businessProfileService, IPartnerRepository partnerRepository)
+        public GetBusinessOnboardingStatusQueryHandler(PartnerService partnerService)
         {
-            _mapper = mapper;
-            _config = config;
             _partnerService = partnerService;
-            _businessProfileService = businessProfileService;
-            _partnerRepository = partnerRepository;
         }
 
         public async Task<Result<BusinessOnboardingStatusOutputDTO>> Handle(GetBusinessOnboardingStatusQuery request, CancellationToken cancellationToken)

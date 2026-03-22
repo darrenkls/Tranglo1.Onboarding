@@ -1,18 +1,12 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Dapper;
+﻿using Dapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Application.DTO.Meta;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -20,13 +14,9 @@ namespace Tranglo1.Onboarding.Application.Queries
     {
         public class GetCompanyUserStatusQueryHandler : IRequestHandler<GetCompanyUserStatusQuery, IEnumerable<CompanyUserStatusOutputDTO>>
         {
-            private readonly ApplicationUserDbContext _context;
-            private readonly IMapper _mapper;
             private readonly IConfiguration _config;
-            public GetCompanyUserStatusQueryHandler(ApplicationUserDbContext context, IMapper mapper, IConfiguration config)
+            public GetCompanyUserStatusQueryHandler(IConfiguration config)
             {
-                _context = context;
-                _mapper = mapper;
                 _config = config;
             }
             public async Task<IEnumerable<CompanyUserStatusOutputDTO>> Handle(GetCompanyUserStatusQuery query, CancellationToken cancellationToken)

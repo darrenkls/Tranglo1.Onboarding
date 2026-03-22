@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities.BusinessProfileAggregate;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.DTO.Meta;
-using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
@@ -18,12 +15,10 @@ namespace Tranglo1.Onboarding.Application.Queries
         public class GetBusinessProfileIDTypeListQueryHandler : IRequestHandler<GetBusinessProfileIDTypeListQuery, IEnumerable<BusinessProfileIDTypeListOutputDTO>>
         {
             private readonly IBusinessProfileRepository _repository;
-            private readonly BusinessProfileDbContext _context;
             private readonly IMapper _mapper;
-            public GetBusinessProfileIDTypeListQueryHandler(BusinessProfileDbContext context, IMapper mapper, IBusinessProfileRepository repository)
+            public GetBusinessProfileIDTypeListQueryHandler(IMapper mapper, IBusinessProfileRepository repository)
             {
                 _repository = repository;
-                _context = context;
                 _mapper = mapper;
             }
 

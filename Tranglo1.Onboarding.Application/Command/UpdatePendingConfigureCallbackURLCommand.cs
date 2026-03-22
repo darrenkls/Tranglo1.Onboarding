@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,21 +44,18 @@ namespace Tranglo1.Onboarding.Application.Command
     {
         private readonly PartnerService _partnerService;
         private readonly IPartnerRepository _partnerRepository;
-        private readonly ILogger<UpdateAPIPartnerSettingsCommandHandler> _logger;
         private readonly INotificationService _notificationService;
         private readonly BusinessProfileService _businessProfileService;
         private readonly IWebHostEnvironment _environment;
 
         public UpdatePendingConfigureCallbackURLCommandHandler(PartnerService partnerService,
                                                         IPartnerRepository partnerRepository,
-                                                        ILogger<UpdateAPIPartnerSettingsCommandHandler> logger, 
                                                         INotificationService notificationService,
                                                         BusinessProfileService businessProfileService,
                                                         IWebHostEnvironment environment)
         {
             _partnerService = partnerService;
             _partnerRepository = partnerRepository;
-            _logger = logger;
             _notificationService = notificationService;
             _businessProfileService = businessProfileService;
             _environment = environment;
