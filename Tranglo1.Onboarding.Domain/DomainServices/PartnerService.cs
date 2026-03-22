@@ -17,7 +17,8 @@ namespace Tranglo1.Onboarding.Domain.DomainServices
         private readonly IStaffEntityQueryService staffEntityQueryService;
 
         protected IPartnerRepository Repository => partnerRepository;
-        public PartnerService(
+
+		public PartnerService(
             IPartnerRepository partnerRepository,
              IBusinessProfileRepository businessProfileRepository,
              IStaffEntityQueryService staffEntityQueryService)

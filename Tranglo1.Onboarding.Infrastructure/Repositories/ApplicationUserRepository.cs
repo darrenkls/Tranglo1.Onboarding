@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Infrastructure.Persistence;
 
 namespace Tranglo1.Onboarding.Infrastructure.Repositories
 {
-    public class ApplicationUserRepository : IApplicationUserRepository, IStaffEntityQueryService
+    public class ApplicationUserRepository : IApplicationUserRepository
     {
         private readonly ApplicationUserDbContext _dbContext;
 
