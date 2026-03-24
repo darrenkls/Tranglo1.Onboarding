@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Application.DTO.Meta;
 using Tranglo1.Onboarding.Domain.Entities.ScreeningAggregate;
 using Tranglo1.Onboarding.Infrastructure.Persistence;
 namespace Tranglo1.Onboarding.Application.Queries

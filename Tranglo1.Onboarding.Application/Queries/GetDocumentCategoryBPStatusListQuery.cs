@@ -7,6 +7,7 @@ using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.Common.Constant;
+using Tranglo1.Onboarding.Application.DTO.Meta;
 using Tranglo1.UserAccessControl;
 
 namespace Tranglo1.Onboarding.Application.Queries
