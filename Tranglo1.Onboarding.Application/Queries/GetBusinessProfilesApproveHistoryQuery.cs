@@ -65,14 +65,14 @@ namespace Tranglo1.Onboarding.Application.Queries
             {
                 var _CurrentUser = identityContext.CurrentUser;
                 var _Sub = _CurrentUser.GetSubjectId();
-                ApplicationUser applicationUser = await _userManager.FindByIdAsync(_Sub);
+                ApplicationUser applicationUser = await _userManager.FindByIdAsync(_Sub.Value);
                 if (applicationUser is TrangloStaff trangloStaff)
                 {
                     var trangloEntities = await _applicationUserRepository.GetTrangloStaffEntityAssignmentByUserId(trangloStaff.Id);
                     var TrangloEntityResult = EntityVerificationBehavior.TrangloEntityChecking(trangloEntities, request.EntityCode);
                     if (TrangloEntityResult.IsFailure)
                     {
-                        throw new ForbiddenException($"User account: {_Sub} is not authorized to access Tranglo Entity {request.EntityCode}");
+                        throw new ForbiddenException($"User account: {_Sub.Value} is not authorized to access Tranglo Entity {request.EntityCode}");
                     }
                 }
 

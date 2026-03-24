@@ -148,5 +148,27 @@ namespace System.Security.Claims
                 return Maybe<string>.None;
             }
         }
+
+        public static Maybe<bool> IsBusinessProfileActive(this ClaimsPrincipal user, int businessProfileCode)
+        {
+            if (user == null || user.Claims == null)
+            {
+                return Maybe<bool>.None;
+            }
+
+            var bpClaims = user.Claims.Where(c =>
+                string.Equals(c.Type, "connect_solution_business_profile", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(c.Type, "business_solution_business_profile", StringComparison.OrdinalIgnoreCase));
+
+            if (!bpClaims.Any())
+            {
+                return Maybe<bool>.None;
+            }
+
+            var profileCodeStr = businessProfileCode.ToString();
+            var isActive = bpClaims.Any(c => c.Value.Split(',').Contains(profileCodeStr));
+
+            return Maybe<bool>.From(isActive);
+        }
     }
 }
