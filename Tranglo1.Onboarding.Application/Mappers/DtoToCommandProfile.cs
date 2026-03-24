@@ -70,7 +70,7 @@ namespace Tranglo1.Onboarding.Application.Mappers
 			CreateMap<SignedPartnerAgreementInputDTO, UpdateSignedPartnerAgreementCommand>();
 			CreateMap<HelloSignDocumentInputDTO, SaveHelloSignDocumentCommand>();
 			CreateMap<PartnerAPISettingsInputDTO, SavePartnerAPISettingsCommand>();
-			CreateMap<PartnerAPISettingsInputDTO, UpdateAPIPartnerSettingsCommand>();
+			CreateMap<PartnerAPISettingsInputDTO, UpdatePartnerApiSettingsCommand>();
 			CreateMap<WhitelistIPAddressInputDTO, SaveWhitelistIPAddressCommand>();
 			CreateMap<WhitelistIPAddressInputDTO, UpdatePendingWhitelistIPCommand>();
 			CreateMap<PartnerAPISettingsInputDTO, UpdatePendingConfigureCallbackURLCommand>();
