@@ -10,7 +10,6 @@ using Tranglo1.Onboarding.Application.DTO.ComplianceOfficers;
 using Tranglo1.Onboarding.Application.DTO.CustomerUser;
 using Tranglo1.Onboarding.Application.DTO.Declarations;
 using Tranglo1.Onboarding.Application.DTO.Documentation;
-using Tranglo1.Onboarding.Application.DTO.KYCAdminManagement.AdminManagement;
 using Tranglo1.Onboarding.Application.DTO.LicenseInformation;
 using Tranglo1.Onboarding.Application.DTO.Partner;
 using Tranglo1.Onboarding.Application.DTO.Partner.PartnerRegistration;
@@ -50,8 +49,6 @@ namespace Tranglo1.Onboarding.Application.Mappers
 			CreateMap<ComplianceOfficersInputDTO, UpdateCoInformationCommand>();
 			CreateMap<CommentAndReviewRemarksInputDTO, SaveCommentsCommand>();
 			CreateMap<CommentAndReviewRemarksInputDTO, SaveReviewRemarksCommand>();
-			CreateMap<TrangloEntityBlockStatusInputDTO, UpdateTrangloStaffBlockStatusCommand>();
-			CreateMap<TrangloStaffUserUpdateInputDTO, UpdateTrangloStaffAssignmentCommand>();
 			CreateMap<VerifyCustomerUserEmailModel, VerifyCustomerUserEmailCommand>()
 				.ForMember(
 				command => command.Token,
