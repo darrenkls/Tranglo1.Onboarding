@@ -25,6 +25,7 @@ using Tranglo1.Onboarding.Application.DTO.PrimaryOfficer;
 using Tranglo1.Onboarding.Application.DTO.Shareholder;
 using Tranglo1.Onboarding.Application.DTO.SignUpCode;
 using Tranglo1.Onboarding.Application.Queries;
+using Tranglo1.Onboarding.Application.DTO.TrangloRole;
 
 namespace Tranglo1.Onboarding.Application.Mappers
 {

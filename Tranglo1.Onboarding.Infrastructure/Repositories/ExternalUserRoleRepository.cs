@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Entities.ExternalUserRoleAggregate;
@@ -34,5 +35,14 @@ namespace Tranglo1.Onboarding.Infrastructure.Repositories
 				.Include(r => r.Solution)
 				.FirstOrDefaultAsync(x => x.RoleCode == roleCode);
 		}
-    }
+
+		public async Task<List<ExternalUserRole>> GetAllExternalUserRolesBySolution(long solutionCode)
+		{
+			var query = await _dbContext.ExternalUserRoles
+				.Where(x => x.Solution.Id == solutionCode)
+				.ToListAsync();
+
+			return query;
+		}
+	}
 }

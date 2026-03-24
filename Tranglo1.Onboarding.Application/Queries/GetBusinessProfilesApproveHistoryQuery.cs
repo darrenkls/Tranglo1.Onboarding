@@ -18,6 +18,7 @@ using Tranglo1.Onboarding.Domain.Repositories;
 using Tranglo1.Onboarding.Application.MediatR.Behaviours;
 using Tranglo1.Onboarding.Application.Common.Exceptions;
 using Tranglo1.Onboarding.Application.MediatR;
+using System.Security.Claims;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
