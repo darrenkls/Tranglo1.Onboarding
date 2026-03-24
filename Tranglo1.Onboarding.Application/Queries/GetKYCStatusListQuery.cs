@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Application.DTO.Meta;
 using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.Repositories;

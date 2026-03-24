@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Common;
@@ -16,11 +15,9 @@ using Tranglo1.Onboarding.Application.Common.Constant;
 using Tranglo1.Onboarding.Infrastructure.Services;
 using Tranglo1.Onboarding.Domain.DomainServices;
 using Tranglo1.Onboarding.Domain.Repositories;
-using IdentityServer4.Extensions;
 using Tranglo1.Onboarding.Application.MediatR.Behaviours;
 using Tranglo1.Onboarding.Application.Common.Exceptions;
 using Tranglo1.Onboarding.Application.MediatR;
-using Tranglo1.Onboarding.Application.DTO.KYCAdminManagement.AdminManagement;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {

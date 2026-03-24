@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Application.DTO.Meta;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {

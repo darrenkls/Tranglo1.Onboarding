@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Entities.ScreeningAggregate;
 using Tranglo1.Onboarding.Application.MediatR;
+using Tranglo1.Onboarding.Application.DTO.Meta;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {

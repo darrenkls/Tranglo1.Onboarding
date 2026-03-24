@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using IdentityServer4.Extensions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;

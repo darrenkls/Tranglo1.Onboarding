@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using Dapper;
+﻿using Dapper;
 using MediatR;
-using System;
 using System.Collections.Generic;
-using CSharpFunctionalExtensions;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +14,6 @@ using Tranglo1.UserAccessControl;
 using Tranglo1.Onboarding.Application.Common.Constant;
 using Tranglo1.Onboarding.Application.MediatR.Behaviours;
 using Tranglo1.Onboarding.Infrastructure.Services;
-using IdentityServer4.Extensions;
 using Tranglo1.Onboarding.Domain.Entities;
 using Tranglo1.Onboarding.Domain.DomainServices;
 using Tranglo1.Onboarding.Domain.Repositories;

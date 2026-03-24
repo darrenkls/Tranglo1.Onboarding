@@ -3,7 +3,6 @@ using CSharpFunctionalExtensions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using IdentityServer4.Extensions;
 using MediatR;
 using System;
 using System.Data;
