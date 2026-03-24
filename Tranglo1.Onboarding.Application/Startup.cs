@@ -20,7 +20,6 @@ using Tranglo1.Onboarding.Application.DependencyInjection;
 using Tranglo1.Onboarding.Application.Hubs;
 using Tranglo1.Onboarding.Application.Infrastructure.Persistance;
 using Tranglo1.Onboarding.Application.Infrastructure.Swagger;
-using Tranglo1.Onboarding.Application.MediatR.Behaviours;
 using Tranglo1.Onboarding.Application.Security;
 using Tranglo1.Onboarding.Application.Validations;
 using Tranglo1.Onboarding.Infrastructure.DependencyInjection;
@@ -127,7 +126,6 @@ namespace Tranglo1.Onboarding.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditLogBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UserAccessControlBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ErrorHandlingBehavior<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(EntityVerificationBehavior<,>));
 
             // AutoMapper
             services.AddAutoMapper(OnboardingServiceCollectionExtensions.OnboardingApplicationAssembly);
