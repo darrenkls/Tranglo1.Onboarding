@@ -50,7 +50,8 @@ namespace Tranglo1.Onboarding.Application.Queries
             public async Task<Result<FileOutputDTO>> Handle(GetPartnerListingExportQuery request, CancellationToken cancellationToken)
             {
                 var languageCode = CultureInfo.CurrentUICulture.Name;
-                var subjectId = _identityContext.CurrentUser.GetSubjectId();
+                var subjectIdResult = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(_identityContext.CurrentUser);
+                var subjectId = subjectIdResult.HasValue ? subjectIdResult.Value : null;
                 var applicationUser = await _applicationUserRepository.GetApplicationUserByLoginId(subjectId);
 
                 request.InputDTO.Column ??= new GetPartnerListExportColumnInputDTO();

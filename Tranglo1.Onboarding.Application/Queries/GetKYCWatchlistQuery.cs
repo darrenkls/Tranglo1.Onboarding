@@ -67,7 +67,8 @@ namespace Tranglo1.Onboarding.Application.Queries
             public async Task<PagedResult<KYCWatchListReviewOutputDTO>> Handle(GetKYCWatchlistQuery request, CancellationToken cancellationToken)
             {
                 var _CurrentUser = identityContext.CurrentUser;
-                var _Sub = _CurrentUser.GetSubjectId();
+                var _SubResult = System.Security.Claims.ClaimsPrincipalExtensions.GetSubjectId(_CurrentUser);
+                var _Sub = _SubResult.HasValue ? _SubResult.Value : null;
                 ApplicationUser applicationUser = await _userManager.FindByIdAsync(_Sub);
                 if (applicationUser is TrangloStaff trangloStaff)
                 {
