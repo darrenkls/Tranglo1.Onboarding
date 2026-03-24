@@ -14,11 +14,11 @@ namespace Tranglo1.Onboarding.Application.Queries
 {
     public class GetCompanyUserBlockStatusListQuery : IRequest<IEnumerable<CompanyUserBlockStatusOutputDTO>>
     {
-        public class GetCompanyUserAccountStatusListQueryHandler : IRequestHandler<GetCompanyUserBlockStatusListQuery, IEnumerable<CompanyUserBlockStatusOutputDTO>>
+        public class GetCompanyUserBlockStatusListQueryHandler : IRequestHandler<GetCompanyUserBlockStatusListQuery, IEnumerable<CompanyUserBlockStatusOutputDTO>>
         {
             private readonly ApplicationUserDbContext _context;
             private readonly IMapper _mapper;
-            public GetCompanyUserAccountStatusListQueryHandler(ApplicationUserDbContext context, IMapper mapper)
+            public GetCompanyUserBlockStatusListQueryHandler(ApplicationUserDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;

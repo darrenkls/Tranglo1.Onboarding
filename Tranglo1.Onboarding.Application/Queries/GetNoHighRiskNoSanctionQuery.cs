@@ -11,11 +11,11 @@ namespace Tranglo1.Onboarding.Application.Queries
 {
     public class GetNoHighRiskNoSanctionQuery : IRequest<IReadOnlyList<CountryListOutputDTO>>
     {
-        public class GetDisplayedCountriesQueryHandler : IRequestHandler<GetNoHighRiskNoSanctionQuery, IReadOnlyList<CountryListOutputDTO>>
+        public class GetNoHighRiskNoSanctionQueryHandler : IRequestHandler<GetNoHighRiskNoSanctionQuery, IReadOnlyList<CountryListOutputDTO>>
         {
             private readonly ICountrySettingRepository _repository;
             //private readonly ICountryRepository _countryRepository;
-            public GetDisplayedCountriesQueryHandler(
+            public GetNoHighRiskNoSanctionQueryHandler(
                 ICountrySettingRepository repository)
             {
                 //_countryRepository = countryRepository;

@@ -15,9 +15,9 @@ namespace Tranglo1.Onboarding.Application.Queries
 {
     public class GetKYCConnectCategoriesQuery : IRequest<Result<List<KYCConnectCategoriesOutputDTO>>>
     {
-        public class GetKYCCategoriesQueryHandler : IRequestHandler<GetKYCConnectCategoriesQuery, Result<List<KYCConnectCategoriesOutputDTO>>>
+        public class GetKYCConnectCategoriesQueryHandler : IRequestHandler<GetKYCConnectCategoriesQuery, Result<List<KYCConnectCategoriesOutputDTO>>>
         {
-            public GetKYCCategoriesQueryHandler()
+            public GetKYCConnectCategoriesQueryHandler()
             {
 
             }

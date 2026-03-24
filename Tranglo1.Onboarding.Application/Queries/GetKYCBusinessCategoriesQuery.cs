@@ -20,13 +20,13 @@ namespace Tranglo1.Onboarding.Application.Queries
         public int BusinessProfileCode { get; set; }
         public string CustomerSolution { get; set; }
 
-        public class GetKYCCategoriesQueryHandler : IRequestHandler<GetKYCBusinessCategoriesQuery, IEnumerable<KYCBusinessCategoriesOutputDTO>>
+        public class GetKYCBusinessCategoriesQueryHandler : IRequestHandler<GetKYCBusinessCategoriesQuery, IEnumerable<KYCBusinessCategoriesOutputDTO>>
         {
             private readonly IBusinessProfileRepository _repository;
             private readonly PartnerService _partnerService;
             private readonly IPartnerRepository _partnerRepository;
 
-            public GetKYCCategoriesQueryHandler(IBusinessProfileRepository repository, PartnerService partnerService, IPartnerRepository partnerRepository)
+            public GetKYCBusinessCategoriesQueryHandler(IBusinessProfileRepository repository, PartnerService partnerService, IPartnerRepository partnerRepository)
             {
                 _repository = repository;
                 _partnerService = partnerService;
