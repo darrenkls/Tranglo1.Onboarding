@@ -1,5 +1,6 @@
 using AutoMapper;
 using CorrelationId;
+using CorrelationId.DependencyInjection;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

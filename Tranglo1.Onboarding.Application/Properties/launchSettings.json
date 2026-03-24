@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Tranglo1.Onboarding.Application": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49811;http://localhost:49812"
+    }
+  }
+}
