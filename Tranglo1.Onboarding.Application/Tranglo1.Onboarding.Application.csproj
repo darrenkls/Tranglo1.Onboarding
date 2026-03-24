@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -34,10 +34,6 @@
     <PackageReference Include="Tranglo1.ApprovalWorkflowEngine.EntityFramework" Version="1.1.1" />
     <PackageReference Include="Tranglo1.Common" Version="1.0.0" />
     <PackageReference Include="Tranglo1.ReportExport" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
