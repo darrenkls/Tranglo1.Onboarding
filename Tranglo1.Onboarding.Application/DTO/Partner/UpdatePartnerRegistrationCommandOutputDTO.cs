@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Domain.Common;
 using Tranglo1.Onboarding.Domain.Entities;
 
 namespace Tranglo1.Onboarding.Application.DTO.Partner

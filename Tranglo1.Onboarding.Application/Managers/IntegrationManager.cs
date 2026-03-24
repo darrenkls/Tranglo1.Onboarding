@@ -1,14 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Tranglo1.Onboarding.Domain.Entities;
-using Dapper;
-using System.Data;
 using Tranglo1.Onboarding.Application.DTO;
-using Microsoft.Extensions.Logging;
+using Tranglo1.Onboarding.Domain.Common;
 
 namespace Tranglo1.Onboarding.Application.Managers
 {
