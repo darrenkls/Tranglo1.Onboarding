@@ -9,5 +9,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IIdentityContext, BackendIdentityContext>();
             return services;
         }
+
+        public static IServiceCollection AddWebIdentityContext(this IServiceCollection services)
+        {
+            services.AddHttpContextAccessor();
+            services.AddScoped<IIdentityContext, HttpContextIdentityContext>();
+            return services;
+        }
     }
 }
