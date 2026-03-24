@@ -14,6 +14,7 @@ using Tranglo1.Onboarding.Application.Common.Constant;
 using Tranglo1.Onboarding.Domain.Repositories;
 using Serilog;
 using Microsoft.Extensions.Configuration;
+using Tranglo1.Onboarding.Domain.Common;
 
 namespace Tranglo1.Onboarding.Application.Command
 {

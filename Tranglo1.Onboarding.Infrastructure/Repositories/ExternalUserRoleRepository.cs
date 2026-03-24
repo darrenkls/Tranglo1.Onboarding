@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Tranglo1.Onboarding.Domain.Entities.ExternalUserRoleAggregate;
 using Tranglo1.Onboarding.Domain.Repositories;
@@ -15,14 +17,22 @@ namespace Tranglo1.Onboarding.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<ExternalUserRole> GetInitialRoleAsync(int solutionCode)
+        public async Task<ExternalUserRole> GetInitialRoleAsync(int solutionCode)
         {
-            throw new NotImplementedException();
-        }
+			var query = await _dbContext.ExternalUserRoles
+				.Include(x => x.Status)
+				.Include(x => x.Solution)
+				.Where(x => x.ExternalUserRoleName == "System Admin" && x.Solution.Id == solutionCode)
+				.FirstOrDefaultAsync();
 
-        public Task<ExternalUserRole> GetExternalRoleByRoleCodeAsync(string roleCode)
+			return query;
+		}
+
+        public async Task<ExternalUserRole> GetExternalRoleByRoleCodeAsync(string roleCode)
         {
-            throw new NotImplementedException();
-        }
+			return await _dbContext.ExternalUserRoles
+				.Include(r => r.Solution)
+				.FirstOrDefaultAsync(x => x.RoleCode == roleCode);
+		}
     }
 }

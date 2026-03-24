@@ -39,7 +39,10 @@ namespace Tranglo1.Onboarding.Application.DTO.EmailNotification
         public int AutoRejectPartnerApplicationExpiredDays { get; set; }
         public string LoginUrl { get; set; }
         public string Email1 { get; set; }
-        public string Email2 { get; set; }
-        public string Typer { get; set; }
-    }
+		public string Email1Url { get; set; }
+		public string Email2 { get; set; }
+		public string EmailUrl2 { get; set; }
+		public string Typer { get; set; }
+		public string Reset2FAUri { get; set; }
+	}
 }
