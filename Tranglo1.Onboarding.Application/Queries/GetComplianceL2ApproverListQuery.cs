@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tranglo1.Onboarding.Application.DTO.TrangloRole;
 
 namespace Tranglo1.Onboarding.Application.Queries
 {
