@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileScreening", "Backgro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tranglo1.RBADailyScoring", "BackgroundTasks\RBADailyScoring\Tranglo1.RBADailyScoring.csproj", "{F5A6B7C8-D9E0-1234-ABCD-EF1234567899}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tranglo1.DatabricksStoredProcCaller", "BackgroundTasks\DatabricksStoredProcCaller\Tranglo1.DatabricksStoredProcCaller.csproj", "{F6A7B8C9-D0E1-2345-ABCD-EF1234567900}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{F5A6B7C8-D9E0-1234-ABCD-EF1234567899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5A6B7C8-D9E0-1234-ABCD-EF1234567899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5A6B7C8-D9E0-1234-ABCD-EF1234567899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A7B8C9-D0E1-2345-ABCD-EF1234567900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A7B8C9-D0E1-2345-ABCD-EF1234567900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A7B8C9-D0E1-2345-ABCD-EF1234567900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A7B8C9-D0E1-2345-ABCD-EF1234567900}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{F3A4B5C6-D7E8-9012-ABCD-EF1234567897} = {F1A2B3C4-D5E6-7890-ABCD-EF1234567895}
 		{F4A5B6C7-D8E9-0123-ABCD-EF1234567898} = {F1A2B3C4-D5E6-7890-ABCD-EF1234567895}
 		{F5A6B7C8-D9E0-1234-ABCD-EF1234567899} = {F1A2B3C4-D5E6-7890-ABCD-EF1234567895}
+		{F6A7B8C9-D0E1-2345-ABCD-EF1234567900} = {F1A2B3C4-D5E6-7890-ABCD-EF1234567895}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {70A61009-B7C4-4625-C170-D8EF9186F220}
